@@ -1,0 +1,179 @@
+#MacOS specific
+.DS_Store
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+#   having no cross-platform support, pipenv may install dependencies that don't work, or not
+#   install all needed dependencies.
+#Pipfile.lock
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+.DS_Store
+.DS_Store
+data/last_update.json
+data/raw/covid_data/fra/fra_gendata.csv
+data/raw/covid_data/fra/fra_indic_dpt.csv
+data/raw/covid_data/fra/fra_indic_nat.csv
+data/raw/covid_data/fra/fra_testing1.csv
+data/raw/covid_data/fra/fra_testing2.csv
+data/raw/covid_data/us/us_jh_cases.csv
+data/raw/covid_data/us/us_jh_death.csv
+data/raw/covid_data/us/us_testing.csv
+data/raw/covid_data/world/world_jh_cases.csv
+data/raw/covid_data/world/world_jh_death.csv
+data/raw/gen_data/us_pop.csv
+data/raw/gen_data/world_pop.csv
+data/raw/shapefile/fra/departement/Fra_Departement_shapefile.cpg
+data/raw/shapefile/fra/departement/Fra_Departement_shapefile.dbf
+data/raw/shapefile/fra/departement/Fra_Departement_shapefile.prj
+data/raw/shapefile/fra/departement/Fra_Departement_shapefile.shp
+data/raw/shapefile/fra/departement/Fra_Departement_shapefile.shx
+data/raw/shapefile/fra/regions/Fra_Regions_shapefile.cpg
+data/raw/shapefile/fra/regions/Fra_Regions_shapefile.dbf
+data/raw/shapefile/fra/regions/Fra_Regions_shapefile.prj
+data/raw/shapefile/fra/regions/Fra_Regions_shapefile.shp
+data/raw/shapefile/fra/regions/Fra_Regions_shapefile.shx
+data/raw/shapefile/us/states/US_States_shapefile.cpg
+data/raw/shapefile/us/states/US_States_shapefile.dbf
+data/raw/shapefile/us/states/US_States_shapefile.prj
+data/raw/shapefile/us/states/US_States_shapefile.shp
+data/raw/shapefile/us/states/US_States_shapefile.shx
+reports/last_report.json
+data/processed/covid_data/fra/fra_gendata.json
+data/processed/covid_data/world/world_jh_map.geojson
+data/processed/covid_data/world/world_jh.json
+data/processed/covid_data/us/us_jh_map.geojson
+data/raw/gen_data/dept-and-regions.csv
+data/processed/covid_data/fra/fra_dpt.json
+data/processed/covid_data/fra/fra_nat.json
+data/processed/covid_data/fra/fra_reg.json
+data/processed/covid_data/fra/fra_testing.json
+data/processed/covid_data/fra/fra_vax.json
+data/processed/covid_data/us/us_testing.json
+data/processed/gen_data/us_pop.json
+data/raw/covid_data/fra/fra_vax.csv
+.env
+*.geojson
+reports

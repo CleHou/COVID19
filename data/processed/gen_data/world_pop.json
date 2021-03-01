@@ -1,0 +1,1796 @@
+{
+    "schema":{
+        "fields":[
+            {
+                "name":"country",
+                "type":"string"
+            },
+            {
+                "name":"PopTotal",
+                "type":"number"
+            }
+        ],
+        "primaryKey":[
+            "country"
+        ],
+        "pandas_version":"0.20.0"
+    },
+    "data":[
+        {
+            "country":"Afghanistan",
+            "PopTotal":38928.341
+        },
+        {
+            "country":"Africa",
+            "PopTotal":1340598.1129999999
+        },
+        {
+            "country":"African Group",
+            "PopTotal":1338826.591
+        },
+        {
+            "country":"African Union",
+            "PopTotal":1339423.9209999999
+        },
+        {
+            "country":"African Union: Central Africa",
+            "PopTotal":158619.638
+        },
+        {
+            "country":"African Union: Eastern Africa",
+            "PopTotal":392563.672
+        },
+        {
+            "country":"African Union: Northern Africa",
+            "PopTotal":207032.899
+        },
+        {
+            "country":"African Union: Southern Africa",
+            "PopTotal":184002.188
+        },
+        {
+            "country":"African Union: Western Africa",
+            "PopTotal":397205.524
+        },
+        {
+            "country":"African, Caribbean and Pacific (ACP) Group of States",
+            "PopTotal":1179679.906
+        },
+        {
+            "country":"Albania",
+            "PopTotal":2877.8
+        },
+        {
+            "country":"Algeria",
+            "PopTotal":43851.043
+        },
+        {
+            "country":"American Samoa",
+            "PopTotal":55.197
+        },
+        {
+            "country":"Andean Community",
+            "PopTotal":113170.819
+        },
+        {
+            "country":"Andorra",
+            "PopTotal":77.265
+        },
+        {
+            "country":"Angola",
+            "PopTotal":32866.268
+        },
+        {
+            "country":"Anguilla",
+            "PopTotal":15.002
+        },
+        {
+            "country":"Antigua and Barbuda",
+            "PopTotal":97.928
+        },
+        {
+            "country":"Argentina",
+            "PopTotal":45195.777
+        },
+        {
+            "country":"Armenia",
+            "PopTotal":2963.234
+        },
+        {
+            "country":"Aruba",
+            "PopTotal":106.766
+        },
+        {
+            "country":"Asia",
+            "PopTotal":4641054.7860000003
+        },
+        {
+            "country":"Asia-Pacific Economic Cooperation (APEC)",
+            "PopTotal":2972249.4819999998
+        },
+        {
+            "country":"Asia-Pacific Group",
+            "PopTotal":4621682.2300000004
+        },
+        {
+            "country":"Association of Southeast Asian Nations (ASEAN)",
+            "PopTotal":667301.412
+        },
+        {
+            "country":"Australia",
+            "PopTotal":25499.881
+        },
+        {
+            "country":"Australia\/New Zealand",
+            "PopTotal":30322.114
+        },
+        {
+            "country":"Austria",
+            "PopTotal":9006.4
+        },
+        {
+            "country":"Azerbaijan",
+            "PopTotal":10139.175
+        },
+        {
+            "country":"BRIC",
+            "PopTotal":3177822.0279999999
+        },
+        {
+            "country":"BRICS",
+            "PopTotal":3237130.7180000003
+        },
+        {
+            "country":"Bahamas",
+            "PopTotal":393.248
+        },
+        {
+            "country":"Bahrain",
+            "PopTotal":1701.583
+        },
+        {
+            "country":"Bangladesh",
+            "PopTotal":164689.383
+        },
+        {
+            "country":"Barbados",
+            "PopTotal":287.371
+        },
+        {
+            "country":"Belarus",
+            "PopTotal":9449.321
+        },
+        {
+            "country":"Belgium",
+            "PopTotal":11589.616
+        },
+        {
+            "country":"Belize",
+            "PopTotal":397.621
+        },
+        {
+            "country":"Belt-Road Initiative (BRI)",
+            "PopTotal":3403061.7949999999
+        },
+        {
+            "country":"Belt-Road Initiative: Africa",
+            "PopTotal":1192659.5759999999
+        },
+        {
+            "country":"Belt-Road Initiative: Asia",
+            "PopTotal":1572525.7250000001
+        },
+        {
+            "country":"Belt-Road Initiative: Europe",
+            "PopTotal":413895.375
+        },
+        {
+            "country":"Belt-Road Initiative: Latin America and the Caribbean",
+            "PopTotal":208569.955
+        },
+        {
+            "country":"Belt-Road Initiative: Pacific",
+            "PopTotal":15411.164
+        },
+        {
+            "country":"Benin",
+            "PopTotal":12123.198
+        },
+        {
+            "country":"Bermuda",
+            "PopTotal":62.273
+        },
+        {
+            "country":"Bhutan",
+            "PopTotal":771.612
+        },
+        {
+            "country":"Black Sea Economic Cooperation (BSEC)",
+            "PopTotal":343357.186
+        },
+        {
+            "country":"Bolivarian Alliance for the Americas (ALBA)",
+            "PopTotal":58690.348
+        },
+        {
+            "country":"Bolivia",
+            "PopTotal":11673.029
+        },
+        {
+            "country":"Bonaire, Sint Eustatius and Saba",
+            "PopTotal":26.221
+        },
+        {
+            "country":"Bosnia and Herz.",
+            "PopTotal":3280.815
+        },
+        {
+            "country":"Botswana",
+            "PopTotal":2351.625
+        },
+        {
+            "country":"Brazil",
+            "PopTotal":212559.409
+        },
+        {
+            "country":"British Virgin Islands",
+            "PopTotal":30.237
+        },
+        {
+            "country":"Brunei",
+            "PopTotal":437.483
+        },
+        {
+            "country":"Bulgaria",
+            "PopTotal":6948.445
+        },
+        {
+            "country":"Burkina Faso",
+            "PopTotal":20903.278
+        },
+        {
+            "country":"Burundi",
+            "PopTotal":11890.781
+        },
+        {
+            "country":"Cabo Verde",
+            "PopTotal":555.988
+        },
+        {
+            "country":"Cambodia",
+            "PopTotal":16718.971
+        },
+        {
+            "country":"Cameroon",
+            "PopTotal":26545.864
+        },
+        {
+            "country":"Canada",
+            "PopTotal":37742.157
+        },
+        {
+            "country":"Caribbean",
+            "PopTotal":43532.374
+        },
+        {
+            "country":"Caribbean Community and Common Market (CARICOM)",
+            "PopTotal":18849.823
+        },
+        {
+            "country":"Cayman Islands",
+            "PopTotal":65.72
+        },
+        {
+            "country":"Central African Rep.",
+            "PopTotal":4829.764
+        },
+        {
+            "country":"Central America",
+            "PopTotal":179670.186
+        },
+        {
+            "country":"Central Asia",
+            "PopTotal":74338.926
+        },
+        {
+            "country":"Central European Free Trade Agreement (CEFTA)",
+            "PopTotal":25746.658
+        },
+        {
+            "country":"Central and Southern Asia",
+            "PopTotal":2014708.531
+        },
+        {
+            "country":"Chad",
+            "PopTotal":16425.859
+        },
+        {
+            "country":"Channel Islands",
+            "PopTotal":173.859
+        },
+        {
+            "country":"Chile",
+            "PopTotal":19116.209
+        },
+        {
+            "country":"China",
+            "PopTotal":1439323.774
+        },
+        {
+            "country":"China (and dependencies)",
+            "PopTotal":1471286.879
+        },
+        {
+            "country":"China, Hong Kong SAR",
+            "PopTotal":7496.988
+        },
+        {
+            "country":"China, Macao SAR",
+            "PopTotal":649.342
+        },
+        {
+            "country":"Taiwan",
+            "PopTotal":23816.775
+        },
+        {
+            "country":"Colombia",
+            "PopTotal":50882.884
+        },
+        {
+            "country":"Commonwealth of Independent States (CIS)",
+            "PopTotal":290592.838
+        },
+        {
+            "country":"Commonwealth of Nations",
+            "PopTotal":2565385.5499999998
+        },
+        {
+            "country":"Commonwealth: Africa",
+            "PopTotal":583993.8670000001
+        },
+        {
+            "country":"Commonwealth: Asia",
+            "PopTotal":1825653.1730000002
+        },
+        {
+            "country":"Commonwealth: Caribbean and Americas",
+            "PopTotal":44597.814
+        },
+        {
+            "country":"Commonwealth: Europe",
+            "PopTotal":69534.904
+        },
+        {
+            "country":"Commonwealth: Pacific",
+            "PopTotal":41605.792
+        },
+        {
+            "country":"Comoros",
+            "PopTotal":869.595
+        },
+        {
+            "country":"Congo",
+            "PopTotal":5518.092
+        },
+        {
+            "country":"Cook Islands",
+            "PopTotal":17.564
+        },
+        {
+            "country":"Costa Rica",
+            "PopTotal":5094.114
+        },
+        {
+            "country":"Countries with Access to the Sea",
+            "PopTotal":7199203.3310000002
+        },
+        {
+            "country":"Countries with Access to the Sea: Africa",
+            "PopTotal":999209.561
+        },
+        {
+            "country":"Countries with Access to the Sea: Asia",
+            "PopTotal":4474222.8420000002
+        },
+        {
+            "country":"Countries with Access to the Sea: Europe",
+            "PopTotal":679066.702
+        },
+        {
+            "country":"Countries with Access to the Sea: Latin America and the Caribbean",
+            "PopTotal":635156.7729999999
+        },
+        {
+            "country":"Countries with Access to the Sea: Northern America",
+            "PopTotal":368869.644
+        },
+        {
+            "country":"Countries with Access to the Sea: Oceania",
+            "PopTotal":42677.809
+        },
+        {
+            "country":"Croatia",
+            "PopTotal":4105.268
+        },
+        {
+            "country":"Cuba",
+            "PopTotal":11326.616
+        },
+        {
+            "country":"Cura\u00e7ao",
+            "PopTotal":164.1
+        },
+        {
+            "country":"Cyprus",
+            "PopTotal":1207.361
+        },
+        {
+            "country":"Czechia",
+            "PopTotal":10708.982
+        },
+        {
+            "country":"C\u00f4te d'Ivoire",
+            "PopTotal":26378.275
+        },
+        {
+            "country":"North Korea",
+            "PopTotal":25778.815
+        },
+        {
+            "country":"Dem. Rep. Congo",
+            "PopTotal":89561.404
+        },
+        {
+            "country":"Denmark",
+            "PopTotal":5792.203
+        },
+        {
+            "country":"Denmark (and dependencies)",
+            "PopTotal":5897.84
+        },
+        {
+            "country":"Djibouti",
+            "PopTotal":988.002
+        },
+        {
+            "country":"Dominica",
+            "PopTotal":71.991
+        },
+        {
+            "country":"Dominican Rep.",
+            "PopTotal":10847.904
+        },
+        {
+            "country":"ECE: North America-2",
+            "PopTotal":368744.804
+        },
+        {
+            "country":"ECE: UNECE-52",
+            "PopTotal":1301482.4879999999
+        },
+        {
+            "country":"ECLAC: Latin America",
+            "PopTotal":641934.032
+        },
+        {
+            "country":"ECLAC: The Caribbean",
+            "PopTotal":12024.817
+        },
+        {
+            "country":"ESCAP region: East and North-East Asia",
+            "PopTotal":1654272.852
+        },
+        {
+            "country":"ESCAP region: North and Central Asia",
+            "PopTotal":237364.97
+        },
+        {
+            "country":"ESCAP region: Pacific",
+            "PopTotal":42665.213
+        },
+        {
+            "country":"ESCAP region: South and South-West Asia",
+            "PopTotal":2024708.6719999998
+        },
+        {
+            "country":"ESCAP region: South-East Asia",
+            "PopTotal":668619.8539999999
+        },
+        {
+            "country":"ESCAP: ADB Developing member countries (DMCs)",
+            "PopTotal":4064234.8050000002
+        },
+        {
+            "country":"ESCAP: ADB Group A (Concessional assistance\u00a0only)",
+            "PopTotal":165457.879
+        },
+        {
+            "country":"ESCAP: ADB Group B\u00a0(OCR blend)",
+            "PopTotal":1812617.1509999998
+        },
+        {
+            "country":"ESCAP: ADB Group C (Regular OCR only)",
+            "PopTotal":2086159.7749999999
+        },
+        {
+            "country":"ESCAP: Central Asia",
+            "PopTotal":91430.51
+        },
+        {
+            "country":"ESCAP: ECO",
+            "PopTotal":512630.7929999999
+        },
+        {
+            "country":"ESCAP: HDI groups",
+            "PopTotal":4627631.5610000007
+        },
+        {
+            "country":"ESCAP: Landlocked countries (LLDCs)",
+            "PopTotal":166831.944
+        },
+        {
+            "country":"ESCAP: Least Developed Countries (LDCs)",
+            "PopTotal":314374.173
+        },
+        {
+            "country":"ESCAP: Pacific island dev. econ.",
+            "PopTotal":12343.099
+        },
+        {
+            "country":"ESCAP: SAARC",
+            "PopTotal":1856376.6519999998
+        },
+        {
+            "country":"ESCAP: WB High income econ.",
+            "PopTotal":223305.48
+        },
+        {
+            "country":"ESCAP: WB Low income econ.",
+            "PopTotal":93843.964
+        },
+        {
+            "country":"ESCAP: WB Lower middle income econ.",
+            "PopTotal":2414189.2000000002
+        },
+        {
+            "country":"ESCAP: WB Upper middle income econ.",
+            "PopTotal":1896273.7350000001
+        },
+        {
+            "country":"ESCAP: WB income groups",
+            "PopTotal":4627612.3789999997
+        },
+        {
+            "country":"ESCAP: high HDI",
+            "PopTotal":222728.251
+        },
+        {
+            "country":"ESCAP: high income",
+            "PopTotal":222956.185
+        },
+        {
+            "country":"ESCAP: low HDI",
+            "PopTotal":1933858.7869999998
+        },
+        {
+            "country":"ESCAP: low income",
+            "PopTotal":2096735.108
+        },
+        {
+            "country":"ESCAP: lower middle HDI",
+            "PopTotal":2069715.7759999998
+        },
+        {
+            "country":"ESCAP: lower middle income",
+            "PopTotal":586217.954
+        },
+        {
+            "country":"ESCAP: other Asia-Pacific countries\/areas",
+            "PopTotal":200828.133
+        },
+        {
+            "country":"ESCAP: upper middle HDI",
+            "PopTotal":401328.747
+        },
+        {
+            "country":"ESCAP: upper middle income",
+            "PopTotal":1721722.314
+        },
+        {
+            "country":"ESCWA: Arab countries",
+            "PopTotal":436378.875
+        },
+        {
+            "country":"ESCWA: Arab least developed countries",
+            "PopTotal":96075.713
+        },
+        {
+            "country":"ESCWA: Gulf Cooperation Council countries",
+            "PopTotal":58664.095
+        },
+        {
+            "country":"ESCWA: Maghreb countries",
+            "PopTotal":99451.506
+        },
+        {
+            "country":"ESCWA: Mashreq countries",
+            "PopTotal":182187.561
+        },
+        {
+            "country":"ESCWA: member countries",
+            "PopTotal":374777.016
+        },
+        {
+            "country":"East African Community (EAC)",
+            "PopTotal":195283.232
+        },
+        {
+            "country":"Eastern Africa",
+            "PopTotal":445405.578
+        },
+        {
+            "country":"Eastern Asia",
+            "PopTotal":1678089.6269999999
+        },
+        {
+            "country":"Eastern Europe",
+            "PopTotal":293013.21
+        },
+        {
+            "country":"Eastern European Group",
+            "PopTotal":339831.453
+        },
+        {
+            "country":"Eastern and South-Eastern Asia",
+            "PopTotal":2346709.4810000001
+        },
+        {
+            "country":"Economic Community of Central African States (ECCAS)",
+            "PopTotal":204438.115
+        },
+        {
+            "country":"Ecuador",
+            "PopTotal":17643.06
+        },
+        {
+            "country":"Egypt",
+            "PopTotal":102334.403
+        },
+        {
+            "country":"El Salvador",
+            "PopTotal":6486.201
+        },
+        {
+            "country":"Eq. Guinea",
+            "PopTotal":1402.985
+        },
+        {
+            "country":"Eritrea",
+            "PopTotal":3546.427
+        },
+        {
+            "country":"Estonia",
+            "PopTotal":1326.539
+        },
+        {
+            "country":"eSwatini",
+            "PopTotal":1160.164
+        },
+        {
+            "country":"Ethiopia",
+            "PopTotal":114963.583
+        },
+        {
+            "country":"Eurasian Economic Community (Eurasec)",
+            "PopTotal":223691.52
+        },
+        {
+            "country":"Europe",
+            "PopTotal":747636.045
+        },
+        {
+            "country":"Europe and Northern America",
+            "PopTotal":1116505.689
+        },
+        {
+            "country":"European Community (EC: 12)",
+            "PopTotal":384860.299
+        },
+        {
+            "country":"European Free Trade Agreement (EFTA)",
+            "PopTotal":14455.247
+        },
+        {
+            "country":"European Union (EU: 15)",
+            "PopTotal":409506.687
+        },
+        {
+            "country":"European Union (EU: 28)",
+            "PopTotal":513136.526
+        },
+        {
+            "country":"Falkland Is.",
+            "PopTotal":3.483
+        },
+        {
+            "country":"Faroe Islands",
+            "PopTotal":48.865
+        },
+        {
+            "country":"Fiji",
+            "PopTotal":896.444
+        },
+        {
+            "country":"Finland",
+            "PopTotal":5540.718
+        },
+        {
+            "country":"France",
+            "PopTotal":65273.512
+        },
+        {
+            "country":"France (and dependencies)",
+            "PopTotal":68147.687
+        },
+        {
+            "country":"French Guiana",
+            "PopTotal":298.682
+        },
+        {
+            "country":"French Polynesia",
+            "PopTotal":280.904
+        },
+        {
+            "country":"Gabon",
+            "PopTotal":2225.728
+        },
+        {
+            "country":"Gambia",
+            "PopTotal":2416.664
+        },
+        {
+            "country":"Georgia",
+            "PopTotal":3989.175
+        },
+        {
+            "country":"Germany",
+            "PopTotal":83783.945
+        },
+        {
+            "country":"Ghana",
+            "PopTotal":31072.945
+        },
+        {
+            "country":"Gibraltar",
+            "PopTotal":33.691
+        },
+        {
+            "country":"Greater Arab Free Trade Area (GAFTA)",
+            "PopTotal":413978.399
+        },
+        {
+            "country":"Greece",
+            "PopTotal":10423.056
+        },
+        {
+            "country":"Greenland",
+            "PopTotal":56.772
+        },
+        {
+            "country":"Grenada",
+            "PopTotal":112.519
+        },
+        {
+            "country":"Group of 77 (G77)",
+            "PopTotal":6135279.4670000002
+        },
+        {
+            "country":"Group of Eight (G8)",
+            "PopTotal":918561.0109999999
+        },
+        {
+            "country":"Group of Seven (G7)",
+            "PopTotal":772626.551
+        },
+        {
+            "country":"Group of Twenty (G20) - member states",
+            "PopTotal":4653331.4180000005
+        },
+        {
+            "country":"Guadeloupe",
+            "PopTotal":400.127
+        },
+        {
+            "country":"Guam",
+            "PopTotal":168.783
+        },
+        {
+            "country":"Guatemala",
+            "PopTotal":17915.567
+        },
+        {
+            "country":"Guinea",
+            "PopTotal":13132.792
+        },
+        {
+            "country":"Guinea-Bissau",
+            "PopTotal":1967.998
+        },
+        {
+            "country":"Guyana",
+            "PopTotal":786.559
+        },
+        {
+            "country":"Haiti",
+            "PopTotal":11402.533
+        },
+        {
+            "country":"High-income countries",
+            "PopTotal":1263092.9340000001
+        },
+        {
+            "country":"Holy See",
+            "PopTotal":0.809
+        },
+        {
+            "country":"Honduras",
+            "PopTotal":9904.608
+        },
+        {
+            "country":"Hungary",
+            "PopTotal":9660.35
+        },
+        {
+            "country":"Iceland",
+            "PopTotal":341.25
+        },
+        {
+            "country":"India",
+            "PopTotal":1380004.385
+        },
+        {
+            "country":"Indonesia",
+            "PopTotal":273523.621
+        },
+        {
+            "country":"Iran",
+            "PopTotal":83992.953
+        },
+        {
+            "country":"Iraq",
+            "PopTotal":40222.503
+        },
+        {
+            "country":"Ireland",
+            "PopTotal":4937.796
+        },
+        {
+            "country":"Isle of Man",
+            "PopTotal":85.032
+        },
+        {
+            "country":"Israel",
+            "PopTotal":8655.541
+        },
+        {
+            "country":"Italy",
+            "PopTotal":60461.828
+        },
+        {
+            "country":"Jamaica",
+            "PopTotal":2961.161
+        },
+        {
+            "country":"Japan",
+            "PopTotal":126476.458
+        },
+        {
+            "country":"Jordan",
+            "PopTotal":10203.14
+        },
+        {
+            "country":"Kazakhstan",
+            "PopTotal":18776.707
+        },
+        {
+            "country":"Kenya",
+            "PopTotal":53771.3
+        },
+        {
+            "country":"Kiribati",
+            "PopTotal":119.446
+        },
+        {
+            "country":"Kuwait",
+            "PopTotal":4270.563
+        },
+        {
+            "country":"Kyrgyzstan",
+            "PopTotal":6524.191
+        },
+        {
+            "country":"LLDC: Africa",
+            "PopTotal":341388.552
+        },
+        {
+            "country":"LLDC: Europe",
+            "PopTotal":6117.343
+        },
+        {
+            "country":"LLDC: Latin America",
+            "PopTotal":18805.559
+        },
+        {
+            "country":"Land-locked Countries",
+            "PopTotal":595596.2070000001
+        },
+        {
+            "country":"Land-locked Countries (Others)",
+            "PopTotal":62452.809
+        },
+        {
+            "country":"Land-locked Developing Countries (LLDC)",
+            "PopTotal":533143.3979999999
+        },
+        {
+            "country":"Laos",
+            "PopTotal":7275.556
+        },
+        {
+            "country":"Latin America and the Caribbean",
+            "PopTotal":653962.3320000001
+        },
+        {
+            "country":"Latin American Integration Association (ALADI)",
+            "PopTotal":573658.551
+        },
+        {
+            "country":"Latin American and Caribbean Group (GRULAC)",
+            "PopTotal":649376.323
+        },
+        {
+            "country":"Latvia",
+            "PopTotal":1886.202
+        },
+        {
+            "country":"Least developed countries",
+            "PopTotal":1057438.1629999999
+        },
+        {
+            "country":"Least developed: Africa",
+            "PopTotal":701835.4890000001
+        },
+        {
+            "country":"Least developed: Asia",
+            "PopTotal":343074.875
+        },
+        {
+            "country":"Least developed: Oceania",
+            "PopTotal":1125.266
+        },
+        {
+            "country":"Lebanon",
+            "PopTotal":6825.442
+        },
+        {
+            "country":"Lesotho",
+            "PopTotal":2142.252
+        },
+        {
+            "country":"Less developed regions",
+            "PopTotal":6521494.4679999994
+        },
+        {
+            "country":"Less developed regions, excluding China",
+            "PopTotal":5050207.5889999997
+        },
+        {
+            "country":"Less developed regions, excluding least developed countries",
+            "PopTotal":5464056.3049999997
+        },
+        {
+            "country":"Less developed: Asia",
+            "PopTotal":4514578.3279999997
+        },
+        {
+            "country":"Less developed: Oceania",
+            "PopTotal":12355.695
+        },
+        {
+            "country":"Liberia",
+            "PopTotal":5057.677
+        },
+        {
+            "country":"Libya",
+            "PopTotal":6871.287
+        },
+        {
+            "country":"Liechtenstein",
+            "PopTotal":38.137
+        },
+        {
+            "country":"Lithuania",
+            "PopTotal":2722.291
+        },
+        {
+            "country":"Low-income countries",
+            "PopTotal":775710.6120000001
+        },
+        {
+            "country":"Lower-middle-income countries",
+            "PopTotal":3098235.284
+        },
+        {
+            "country":"Luxembourg",
+            "PopTotal":625.976
+        },
+        {
+            "country":"Madagascar",
+            "PopTotal":27691.019
+        },
+        {
+            "country":"Malawi",
+            "PopTotal":19129.955
+        },
+        {
+            "country":"Malaysia",
+            "PopTotal":32365.998
+        },
+        {
+            "country":"Maldives",
+            "PopTotal":540.542
+        },
+        {
+            "country":"Mali",
+            "PopTotal":20250.834
+        },
+        {
+            "country":"Malta",
+            "PopTotal":441.539
+        },
+        {
+            "country":"Marshall Islands",
+            "PopTotal":59.194
+        },
+        {
+            "country":"Martinique",
+            "PopTotal":375.265
+        },
+        {
+            "country":"Mauritania",
+            "PopTotal":4649.66
+        },
+        {
+            "country":"Mauritius",
+            "PopTotal":1271.767
+        },
+        {
+            "country":"Mayotte",
+            "PopTotal":272.813
+        },
+        {
+            "country":"Melanesia",
+            "PopTotal":11122.99
+        },
+        {
+            "country":"Mexico",
+            "PopTotal":128932.753
+        },
+        {
+            "country":"Micronesia",
+            "PopTotal":548.927
+        },
+        {
+            "country":"Micronesia (Fed. States of)",
+            "PopTotal":115.021
+        },
+        {
+            "country":"Middle Africa",
+            "PopTotal":179595.125
+        },
+        {
+            "country":"Middle-income countries",
+            "PopTotal":5753051.6150000002
+        },
+        {
+            "country":"Monaco",
+            "PopTotal":39.244
+        },
+        {
+            "country":"Mongolia",
+            "PopTotal":3278.292
+        },
+        {
+            "country":"Montenegro",
+            "PopTotal":628.062
+        },
+        {
+            "country":"Montserrat",
+            "PopTotal":4.999
+        },
+        {
+            "country":"More developed regions",
+            "PopTotal":1273304.2609999999
+        },
+        {
+            "country":"Morocco",
+            "PopTotal":36910.558
+        },
+        {
+            "country":"Mozambique",
+            "PopTotal":31255.435
+        },
+        {
+            "country":"Myanmar",
+            "PopTotal":54409.794
+        },
+        {
+            "country":"Namibia",
+            "PopTotal":2540.916
+        },
+        {
+            "country":"Nauru",
+            "PopTotal":10.834
+        },
+        {
+            "country":"Nepal",
+            "PopTotal":29136.808
+        },
+        {
+            "country":"Netherlands",
+            "PopTotal":17134.873
+        },
+        {
+            "country":"Netherlands (and dependencies)",
+            "PopTotal":17474.842
+        },
+        {
+            "country":"New Caledonia",
+            "PopTotal":285.491
+        },
+        {
+            "country":"New EU member states (joined since 2004)",
+            "PopTotal":103629.839
+        },
+        {
+            "country":"New Zealand",
+            "PopTotal":4822.233
+        },
+        {
+            "country":"New Zealand (and dependencies)",
+            "PopTotal":4842.765
+        },
+        {
+            "country":"Nicaragua",
+            "PopTotal":6624.554
+        },
+        {
+            "country":"Niger",
+            "PopTotal":24206.636
+        },
+        {
+            "country":"Nigeria",
+            "PopTotal":206139.587
+        },
+        {
+            "country":"Niue",
+            "PopTotal":1.618
+        },
+        {
+            "country":"No income group available",
+            "PopTotal":2943.568
+        },
+        {
+            "country":"Non-Self-Governing Territories",
+            "PopTotal":1753.672
+        },
+        {
+            "country":"North American Free Trade Agreement (NAFTA)",
+            "PopTotal":497677.557
+        },
+        {
+            "country":"North Atlantic Treaty Organization (NATO)",
+            "PopTotal":944255.667
+        },
+        {
+            "country":"Macedonia",
+            "PopTotal":2083.38
+        },
+        {
+            "country":"Northern Africa",
+            "PopTotal":246232.508
+        },
+        {
+            "country":"Northern Africa and Western Asia",
+            "PopTotal":525869.282
+        },
+        {
+            "country":"Northern Europe",
+            "PopTotal":106261.271
+        },
+        {
+            "country":"Northern Mariana Islands",
+            "PopTotal":57.557
+        },
+        {
+            "country":"Norway",
+            "PopTotal":5421.242
+        },
+        {
+            "country":"Oman",
+            "PopTotal":5106.622
+        },
+        {
+            "country":"Organisation for Economic Co-operation and Development (OECD)",
+            "PopTotal":1313469.47
+        },
+        {
+            "country":"Organization for Security and Co-operation in Europe (OSCE)",
+            "PopTotal":1296294.632
+        },
+        {
+            "country":"Organization of American States (OAS)",
+            "PopTotal":1018121.127
+        },
+        {
+            "country":"Organization of Petroleum Exporting countries (OPEC)",
+            "PopTotal":518144.279
+        },
+        {
+            "country":"Organization of the Islamic Conference (OIC)",
+            "PopTotal":1907530.4880000001
+        },
+        {
+            "country":"Pakistan",
+            "PopTotal":220892.331
+        },
+        {
+            "country":"Palau",
+            "PopTotal":18.092
+        },
+        {
+            "country":"Panama",
+            "PopTotal":4314.768
+        },
+        {
+            "country":"Papua New Guinea",
+            "PopTotal":8947.027
+        },
+        {
+            "country":"Paraguay",
+            "PopTotal":7132.53
+        },
+        {
+            "country":"Peru",
+            "PopTotal":32971.846
+        },
+        {
+            "country":"Philippines",
+            "PopTotal":109581.085
+        },
+        {
+            "country":"Poland",
+            "PopTotal":37846.605
+        },
+        {
+            "country":"Polynesia",
+            "PopTotal":683.778
+        },
+        {
+            "country":"Portugal",
+            "PopTotal":10196.707
+        },
+        {
+            "country":"Puerto Rico",
+            "PopTotal":2860.84
+        },
+        {
+            "country":"Qatar",
+            "PopTotal":2881.06
+        },
+        {
+            "country":"Korea, South",
+            "PopTotal":51269.183
+        },
+        {
+            "country":"Moldova",
+            "PopTotal":4033.963
+        },
+        {
+            "country":"Romania",
+            "PopTotal":19237.682
+        },
+        {
+            "country":"Russia",
+            "PopTotal":145934.46
+        },
+        {
+            "country":"Rwanda",
+            "PopTotal":12952.209
+        },
+        {
+            "country":"R\u00e9union",
+            "PopTotal":895.308
+        },
+        {
+            "country":"SIDS Atlantic, and Indian Ocean, Mediterranean and South China Sea (AIMS)",
+            "PopTotal":16226.846
+        },
+        {
+            "country":"SIDS Caribbean",
+            "PopTotal":43506.153
+        },
+        {
+            "country":"Saint Barth\u00e9lemy",
+            "PopTotal":9.885
+        },
+        {
+            "country":"Saint Helena",
+            "PopTotal":6.071
+        },
+        {
+            "country":"Saint Kitts and Nevis",
+            "PopTotal":53.192
+        },
+        {
+            "country":"Saint Lucia",
+            "PopTotal":183.629
+        },
+        {
+            "country":"Saint Martin (French part)",
+            "PopTotal":38.659
+        },
+        {
+            "country":"Saint Pierre and Miquelon",
+            "PopTotal":5.795
+        },
+        {
+            "country":"Saint Vincent and the Grenadines",
+            "PopTotal":110.947
+        },
+        {
+            "country":"Samoa",
+            "PopTotal":198.41
+        },
+        {
+            "country":"San Marino",
+            "PopTotal":33.938
+        },
+        {
+            "country":"Sao Tome and Principe",
+            "PopTotal":219.161
+        },
+        {
+            "country":"Saudi Arabia",
+            "PopTotal":34813.867
+        },
+        {
+            "country":"Senegal",
+            "PopTotal":16743.93
+        },
+        {
+            "country":"Serbia",
+            "PopTotal":8737.37
+        },
+        {
+            "country":"Seychelles",
+            "PopTotal":98.34
+        },
+        {
+            "country":"Shanghai Cooperation Organization (SCO)",
+            "PopTotal":3254462.6889999998
+        },
+        {
+            "country":"Sierra Leone",
+            "PopTotal":7976.985
+        },
+        {
+            "country":"Singapore",
+            "PopTotal":5850.343
+        },
+        {
+            "country":"Sint Maarten (Dutch part)",
+            "PopTotal":42.882
+        },
+        {
+            "country":"Slovakia",
+            "PopTotal":5459.643
+        },
+        {
+            "country":"Slovenia",
+            "PopTotal":2078.932
+        },
+        {
+            "country":"Small Island Developing States (SIDS)",
+            "PopTotal":72076.098
+        },
+        {
+            "country":"Solomon Is.",
+            "PopTotal":686.878
+        },
+        {
+            "country":"Somalia",
+            "PopTotal":15893.219
+        },
+        {
+            "country":"South Africa",
+            "PopTotal":59308.69
+        },
+        {
+            "country":"South America",
+            "PopTotal":430759.7720000001
+        },
+        {
+            "country":"S. Sudan",
+            "PopTotal":11193.729
+        },
+        {
+            "country":"Southern Africa",
+            "PopTotal":67503.647
+        },
+        {
+            "country":"Southern African Development Community (SADC)",
+            "PopTotal":363228.526
+        },
+        {
+            "country":"Southern Asia",
+            "PopTotal":1940369.605
+        },
+        {
+            "country":"Southern Common Market (MERCOSUR)",
+            "PopTotal":308470.415
+        },
+        {
+            "country":"Southern Europe",
+            "PopTotal":152215.243
+        },
+        {
+            "country":"Spain",
+            "PopTotal":46754.783
+        },
+        {
+            "country":"Sri Lanka",
+            "PopTotal":21413.25
+        },
+        {
+            "country":"Palestine",
+            "PopTotal":5101.416
+        },
+        {
+            "country":"Sub-Saharan Africa",
+            "PopTotal":1094365.605
+        },
+        {
+            "country":"Sudan",
+            "PopTotal":43849.269
+        },
+        {
+            "country":"Suriname",
+            "PopTotal":586.634
+        },
+        {
+            "country":"Sweden",
+            "PopTotal":10099.27
+        },
+        {
+            "country":"Switzerland",
+            "PopTotal":8654.618
+        },
+        {
+            "country":"Syria",
+            "PopTotal":17500.657
+        },
+        {
+            "country":"Tajikistan",
+            "PopTotal":9537.642
+        },
+        {
+            "country":"Thailand",
+            "PopTotal":69799.978
+        },
+        {
+            "country":"Timor-Leste",
+            "PopTotal":1318.442
+        },
+        {
+            "country":"Togo",
+            "PopTotal":8278.737
+        },
+        {
+            "country":"Tokelau",
+            "PopTotal":1.35
+        },
+        {
+            "country":"Tonga",
+            "PopTotal":105.697
+        },
+        {
+            "country":"Trinidad and Tobago",
+            "PopTotal":1399.491
+        },
+        {
+            "country":"Tunisia",
+            "PopTotal":11818.618
+        },
+        {
+            "country":"Turkey",
+            "PopTotal":84339.067
+        },
+        {
+            "country":"Turkmenistan",
+            "PopTotal":6031.187
+        },
+        {
+            "country":"Turks and Caicos Islands",
+            "PopTotal":38.718
+        },
+        {
+            "country":"Tuvalu",
+            "PopTotal":11.792
+        },
+        {
+            "country":"UN-ECE: member countries",
+            "PopTotal":1301671.0719999999
+        },
+        {
+            "country":"UNFPA Regions",
+            "PopTotal":6435966.0350000001
+        },
+        {
+            "country":"UNFPA: Arab States (AS)",
+            "PopTotal":377302.1470000001
+        },
+        {
+            "country":"UNFPA: Asia and the Pacific (AP)",
+            "PopTotal":4082579.0310000004
+        },
+        {
+            "country":"UNFPA: East and Southern Africa (ESA)",
+            "PopTotal":617189.215
+        },
+        {
+            "country":"UNFPA: Eastern Europe and Central Asia (EECA)",
+            "PopTotal":249965.985
+        },
+        {
+            "country":"UNFPA: Latin America and the Caribbean (LAC)",
+            "PopTotal":649907.02
+        },
+        {
+            "country":"UNFPA: West and Central Africa (WCA)",
+            "PopTotal":459022.637
+        },
+        {
+            "country":"UNICEF PROGRAMME REGIONS",
+            "PopTotal":6518336.2089999998
+        },
+        {
+            "country":"UNICEF Programme Regions: East Asia and Pacific (EAPRO)",
+            "PopTotal":2142209.426
+        },
+        {
+            "country":"UNICEF Programme Regions: Eastern Caribbean",
+            "PopTotal":2406.024
+        },
+        {
+            "country":"UNICEF Programme Regions: Eastern and Southern Africa (ESARO)",
+            "PopTotal":542249.2629999999
+        },
+        {
+            "country":"UNICEF Programme Regions: Europe and Central Asia (CEECIS)",
+            "PopTotal":280885.442
+        },
+        {
+            "country":"UNICEF Programme Regions: Latin America",
+            "PopTotal":646666.007
+        },
+        {
+            "country":"UNICEF Programme Regions: Latin America and Caribbean (LACRO)",
+            "PopTotal":649072.031
+        },
+        {
+            "country":"UNICEF Programme Regions: Middle East and North Africa (MENARO)",
+            "PopTotal":498959.354
+        },
+        {
+            "country":"UNICEF Programme Regions: West and Central Africa (WCARO)",
+            "PopTotal":548584.041
+        },
+        {
+            "country":"UNICEF REGIONS",
+            "PopTotal":7794798.7289999994
+        },
+        {
+            "country":"UNICEF Regions: East Asia and Pacific",
+            "PopTotal":2389387.29
+        },
+        {
+            "country":"UNICEF Regions: Eastern Europe and Central Asia",
+            "PopTotal":426819.902
+        },
+        {
+            "country":"UNICEF Regions: Eastern and Southern Africa",
+            "PopTotal":589624.762
+        },
+        {
+            "country":"UNICEF Regions: Europe and Central Asia",
+            "PopTotal":924612.983
+        },
+        {
+            "country":"UNICEF Regions: Middle East and North Africa",
+            "PopTotal":463374.954
+        },
+        {
+            "country":"UNICEF Regions: Sub-Saharan Africa",
+            "PopTotal":1138214.8740000001
+        },
+        {
+            "country":"UNICEF Regions: West and Central Africa",
+            "PopTotal":548590.1120000001
+        },
+        {
+            "country":"UNICEF Regions: Western Europe",
+            "PopTotal":497793.081
+        },
+        {
+            "country":"UNITED NATIONS Regional Groups of Member States",
+            "PopTotal":7789099.1849999996
+        },
+        {
+            "country":"Uganda",
+            "PopTotal":45741.0
+        },
+        {
+            "country":"Ukraine",
+            "PopTotal":43733.759
+        },
+        {
+            "country":"United Arab Emirates",
+            "PopTotal":9890.4
+        },
+        {
+            "country":"United Kingdom",
+            "PopTotal":67886.004
+        },
+        {
+            "country":"United Kingdom (and dependencies)",
+            "PopTotal":68405.089
+        },
+        {
+            "country":"United Nations Economic Commission for Latin America and the Caribbean (UN-ECLAC)",
+            "PopTotal":653958.8489999999
+        },
+        {
+            "country":"United Nations Member States",
+            "PopTotal":7789099.1739999996
+        },
+        {
+            "country":"Tanzania",
+            "PopTotal":59734.213
+        },
+        {
+            "country":"United States Virgin Islands",
+            "PopTotal":104.423
+        },
+        {
+            "country":"US",
+            "PopTotal":331002.647
+        },
+        {
+            "country":"United States of America (and dependencies)",
+            "PopTotal":334249.447
+        },
+        {
+            "country":"Upper-middle-income countries",
+            "PopTotal":2654816.3309999998
+        },
+        {
+            "country":"Uruguay",
+            "PopTotal":3473.727
+        },
+        {
+            "country":"Uzbekistan",
+            "PopTotal":33469.199
+        },
+        {
+            "country":"Vanuatu",
+            "PopTotal":307.15
+        },
+        {
+            "country":"Venezuela",
+            "PopTotal":28435.943
+        },
+        {
+            "country":"Vietnam",
+            "PopTotal":97338.583
+        },
+        {
+            "country":"WB region: East Asia and Pacific (excluding high income)",
+            "PopTotal":2142225.9989999998
+        },
+        {
+            "country":"WB region: Europe and Central Asia (excluding high income)",
+            "PopTotal":422714.634
+        },
+        {
+            "country":"WB region: Latin America and Caribbean (excluding high income)",
+            "PopTotal":575044.6120000001
+        },
+        {
+            "country":"WB region: Middle East and North Africa (excluding high income)",
+            "PopTotal":396445.99
+        },
+        {
+            "country":"WB region: Sub-Saharan Africa (excluding high income)",
+            "PopTotal":1135954.3400000001
+        },
+        {
+            "country":"WHO Regions",
+            "PopTotal":7750010.9160000002
+        },
+        {
+            "country":"WHO: African region (AFRO)",
+            "PopTotal":1120161.2350000001
+        },
+        {
+            "country":"WHO: Eastern Mediterranean Region (EMRO)",
+            "PopTotal":725720.786
+        },
+        {
+            "country":"WHO: European Region (EURO)",
+            "PopTotal":932888.1309999999
+        },
+        {
+            "country":"WHO: South-East Asia region (SEARO)",
+            "PopTotal":2021386.6299999999
+        },
+        {
+            "country":"WHO: Western Pacific region (WPRO)",
+            "PopTotal":1931733.007
+        },
+        {
+            "country":"Wallis and Futuna Islands",
+            "PopTotal":11.246
+        },
+        {
+            "country":"West African Economic and Monetary Union (UEMOA)",
+            "PopTotal":130852.886
+        },
+        {
+            "country":"Western Africa",
+            "PopTotal":401861.255
+        },
+        {
+            "country":"Western Asia",
+            "PopTotal":279636.774
+        },
+        {
+            "country":"Western Europe",
+            "PopTotal":196146.321
+        },
+        {
+            "country":"Western European and Others Group (WEOG)",
+            "PopTotal":923721.6440000001
+        },
+        {
+            "country":"W. Sahara",
+            "PopTotal":597.33
+        },
+        {
+            "country":"World Bank Regional Groups (developing only)",
+            "PopTotal":6528762.2270000009
+        },
+        {
+            "country":"Yemen",
+            "PopTotal":29825.968
+        },
+        {
+            "country":"Zambia",
+            "PopTotal":18383.956
+        },
+        {
+            "country":"Zimbabwe",
+            "PopTotal":14862.927
+        }
+    ]
+}
