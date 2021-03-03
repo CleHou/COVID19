@@ -50,8 +50,8 @@ def import_df (list_df, list_prop):
                 
       
         list_final_df.append(importing_df)
-        print(df_name)
-        print(importing_df)
+        #print(df_name)
+        #print(importing_df)
 
     return list_final_df
 

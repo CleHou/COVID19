@@ -82,9 +82,10 @@ class Transfer:
         
     
     def transfer (self):
-        print('\n\n')
-        print('**** Upload type: {self.type_transfer} ****')
-        print(len(self.list_file), 'files groups to transfer')
+        print('\n')
+        print(self.db_file_date.loc[self.list_file])
+        print(f'\n**** Upload type: {self.type_transfer} ****')
+        print(len(self.list_file), '\nfiles groups to transfer')
         k=1
         tot_file = 0
         
@@ -261,7 +262,7 @@ if __name__ == '__main__':
     list_files = ["4_countries_delta", "4_countries_growth", "world_delta", "world_growth", "stack_plot", "France_delta", "France_growth",
               "France_Gen_Situation", "France_Indic_Nat", "Map_France_Indic", "Map_France_Prev_tx_incid", "Map_France_Prev_R", "Map_France_Prev_taux_occupation_sae",
               "Map_France_Prev_tx_pos", "French_Vax", "US_Testing", "France_Testing"]
-    #upload (list_files, 'daily')
+    upload (list_files, 'daily')
     files = LinkExport(list_files, 'daily')
     files.path_to_file()
 

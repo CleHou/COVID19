@@ -62,10 +62,18 @@ def import_daily (data_dir, db_list, last_update_db, limit):
     df_daily = db_list[db_list.loc[:,'update']==True]
     
     for a_df_name in df_daily.index:
-        if last_update_db.loc[a_df_name, 'delta_day'] > limit:
+        if a_df_name not in last_update_db.index:
+            print(f"Creating and downloading {df_daily.loc[a_df_name, 'file_name']}...", end='')
+            import_and_save(a_df_name, raw_data_dir, df_daily)
+            delta_spaces = " "*(len(f"Creating and downloading {df_daily.loc[a_df_name, 'file_name']}...")-len(f"\r{df_daily.loc[a_df_name, 'file_name']} was downloaded"))
+            print(f"\r{df_daily.loc[a_df_name, 'file_name']} was downloaded {delta_spaces}")
+            
+        elif last_update_db.loc[a_df_name, 'delta_day'] > limit:
             print(f"Downloading {df_daily.loc[a_df_name, 'file_name']}...", end='')
             import_and_save(a_df_name, raw_data_dir, df_daily)
-            print(f"\r{df_daily.loc[a_df_name, 'file_name']} was downloaded")
+            delta_spaces = " "*(len(f"Downloading {df_daily.loc[a_df_name, 'file_name']}...")-len(f"\r{df_daily.loc[a_df_name, 'file_name']} was downloaded"))
+            print(f"\r{df_daily.loc[a_df_name, 'file_name']} was downloaded {delta_spaces}")
+            
     print('\n\n')
 
 def get_dates (data_dir, db_list, last_update):
@@ -88,6 +96,12 @@ def get_dates (data_dir, db_list, last_update):
     df.index = pandas.to_datetime(df.index, format='%Y-%m-%d')
     df = df.sort_index()
     last_update.loc["Fra_GenData", 'date'] = df.index[-1]
+
+    path = os.path.normcase(f'{data_dir}/raw{db_list.loc["Fra_Backup", "sub_dir"]}/{db_list.loc["Fra_Backup", "file_name"]}')
+    df = pandas.read_csv(path, dtype={'source_url': str, 'source_archive': str}).set_index('date')
+    df.index = pandas.to_datetime(df.index, format='%Y-%m-%d')
+    df = df.sort_index()
+    last_update.loc["Fra_Backup", 'date'] = df.index[-1]
     
     path = os.path.normcase(f'{data_dir}/raw{db_list.loc["Fra_Indic_Nat", "sub_dir"]}/{db_list.loc["Fra_Indic_Nat", "file_name"]}')
     df = pandas.read_csv(path).set_index('extract_date')
@@ -103,12 +117,11 @@ def get_dates (data_dir, db_list, last_update):
     
     path = os.path.normcase(f'{data_dir}/raw{db_list.loc["Fra_Testing2", "sub_dir"]}/{db_list.loc["Fra_Testing2", "file_name"]}')
     df = pandas.read_csv(path, sep=';')
-    print(df)
     df = df.set_index('jour')
     df.index = pandas.to_datetime(df.index, format='%Y-%m-%d')
     df = df.sort_index()
-    last_update.loc["Fra_Testing2", 'date'] = df.index[-1]+datetime.timedelta(days=2)
-    last_update.loc["Fra_Testing1", 'date'] = df.index[-1]+datetime.timedelta(days=2)
+    last_update.loc["Fra_Testing2", 'date'] = df.index[-1]+datetime.timedelta(days=3)
+    last_update.loc["Fra_Testing1", 'date'] = df.index[-1]+datetime.timedelta(days=3)
     
     path = os.path.normcase(f'{data_dir}/raw{db_list.loc["Fra_Vax", "sub_dir"]}/{db_list.loc["Fra_Vax", "file_name"]}')
     df = pandas.read_csv(path).set_index('jour')
@@ -121,13 +134,31 @@ def get_dates (data_dir, db_list, last_update):
     last_update.loc[:,'date'] = last_update.apply(lambda x: x["date"].strftime("%Y-%m-%d"), axis=1)
     last_update.to_json(f'{data_dir}/last_update.json', orient = "table", indent=4)
 
+def force_download(data_dir, db_list, last_update, update_limit):
+    print('** Entering force downloading mode **')
+    raw_data_dir = os.path.normcase(f'{data_dir}/raw')
+    df_daily = db_list[db_list.loc[:,'update']==True]
+    
+    for a_df_name in df_daily.index:
+        print(f"Creating and downloading {df_daily.loc[a_df_name, 'file_name']}...", end='')
+        import_and_save(a_df_name, raw_data_dir, df_daily)
+        delta_spaces = " "*(len(f"Creating and downloading {df_daily.loc[a_df_name, 'file_name']}...")-len(f"\r{df_daily.loc[a_df_name, 'file_name']} was downloaded"))
+        print(f"\r{df_daily.loc[a_df_name, 'file_name']} was downloaded {delta_spaces}")
+            
+        
+    print('\n\n')
+    
+
+
 def main(update_limit):
+    
     data_dir = file_fct.get_parent_dir(2, 'data') # .../COVID19/data
     db_list = df_fct.read_db_list ('raw')
     last_update = last_update_db (data_dir, db_list)
     
     import_static (data_dir, db_list)
     import_daily (data_dir, db_list, last_update, update_limit)
+    #force_download(data_dir, db_list, last_update, update_limit)
     
     get_dates (data_dir, db_list, last_update)
 

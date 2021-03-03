@@ -2298,170 +2298,184 @@
         },
         {
             "date":"2021-02-05T00:00:00.000Z",
-            "tx_incid":210.7606504329,
+            "tx_incid":210.7621404129,
             "R":0.99,
             "taux_occupation_sae":64.0,
-            "tx_pos":6.3915283286
+            "tx_pos":6.3911432245
         },
         {
             "date":"2021-02-06T00:00:00.000Z",
-            "tx_incid":209.6863748556,
+            "tx_incid":209.7102145355,
             "R":0.98,
             "taux_occupation_sae":63.6,
-            "tx_pos":6.336342921
+            "tx_pos":6.3355799801
         },
         {
             "date":"2021-02-07T00:00:00.000Z",
-            "tx_incid":208.8922155176,
+            "tx_incid":208.9160551975,
             "R":0.97,
             "taux_occupation_sae":64.5,
-            "tx_pos":6.3152451382
+            "tx_pos":6.3144555069
         },
         {
             "date":"2021-02-08T00:00:00.000Z",
-            "tx_incid":203.3852494513,
+            "tx_incid":203.3986592713,
             "R":0.96,
             "taux_occupation_sae":66.3,
-            "tx_pos":6.224736604
+            "tx_pos":6.2238726694
         },
         {
             "date":"2021-02-09T00:00:00.000Z",
-            "tx_incid":200.6719958781,
+            "tx_incid":200.6824257381,
             "R":0.95,
             "taux_occupation_sae":65.9,
-            "tx_pos":6.1574086774
+            "tx_pos":6.156419908
         },
         {
             "date":"2021-02-10T00:00:00.000Z",
-            "tx_incid":198.9182894225,
+            "tx_incid":198.9287192825,
             "R":0.94,
             "taux_occupation_sae":65.4,
-            "tx_pos":6.107727943
+            "tx_pos":6.1067658305
         },
         {
             "date":"2021-02-11T00:00:00.000Z",
-            "tx_incid":196.0456079897,
+            "tx_incid":196.0694476696,
             "R":0.94,
             "taux_occupation_sae":65.8,
-            "tx_pos":6.0355188099
+            "tx_pos":6.0348603161
         },
         {
             "date":"2021-02-12T00:00:00.000Z",
-            "tx_incid":193.2623253567,
+            "tx_incid":193.2891449966,
             "R":0.94,
             "taux_occupation_sae":65.2,
-            "tx_pos":5.9838432357
+            "tx_pos":5.9826422853
         },
         {
             "date":"2021-02-13T00:00:00.000Z",
-            "tx_incid":191.92730328,
+            "tx_incid":191.9526329399,
             "R":0.94,
             "taux_occupation_sae":65.1,
-            "tx_pos":5.9504083364
+            "tx_pos":5.949008891
         },
         {
             "date":"2021-02-14T00:00:00.000Z",
-            "tx_incid":191.92879326,
+            "tx_incid":191.9556128999,
             "R":0.94,
             "taux_occupation_sae":65.2,
-            "tx_pos":5.9522390267
+            "tx_pos":5.950857193
         },
         {
             "date":"2021-02-15T00:00:00.000Z",
-            "tx_incid":191.9839225198,
+            "tx_incid":192.0256419597,
             "R":0.95,
             "taux_occupation_sae":66.6,
-            "tx_pos":6.002814824
+            "tx_pos":6.001683925
         },
         {
             "date":"2021-02-16T00:00:00.000Z",
-            "tx_incid":191.8677040801,
+            "tx_incid":191.90942352,
             "R":0.96,
             "taux_occupation_sae":66.0,
-            "tx_pos":6.0522827895
+            "tx_pos":6.0510846851
         },
         {
             "date":"2021-02-17T00:00:00.000Z",
-            "tx_incid":194.0445648547,
+            "tx_incid":194.0922442146,
             "R":0.98,
             "taux_occupation_sae":66.0,
-            "tx_pos":6.1404939818
+            "tx_pos":6.1391486959
         },
         {
             "date":"2021-02-18T00:00:00.000Z",
-            "tx_incid":198.5726140634,
+            "tx_incid":198.6188034433,
             "R":1.0,
             "taux_occupation_sae":66.9,
-            "tx_pos":6.2710657734
+            "tx_pos":6.2694652403
         },
         {
             "date":"2021-02-19T00:00:00.000Z",
-            "tx_incid":204.2375180092,
+            "tx_incid":204.303077129,
             "R":1.01,
             "taux_occupation_sae":66.8,
-            "tx_pos":6.4361635443
+            "tx_pos":6.4348032574
         },
         {
             "date":"2021-02-20T00:00:00.000Z",
-            "tx_incid":207.3187966415,
+            "tx_incid":207.4007455413,
             "R":1.03,
             "taux_occupation_sae":66.6,
-            "tx_pos":6.5301551887
+            "tx_pos":6.5288389063
         },
         {
             "date":"2021-02-21T00:00:00.000Z",
-            "tx_incid":208.0846463596,
+            "tx_incid":208.1695752194,
             "R":1.05,
             "taux_occupation_sae":67.1,
-            "tx_pos":6.5541273037
+            "tx_pos":6.5528044988
         },
         {
             "date":"2021-02-22T00:00:00.000Z",
-            "tx_incid":215.0175232822,
+            "tx_incid":215.1501315019,
             "R":1.07,
             "taux_occupation_sae":67.4,
-            "tx_pos":6.8586689024
+            "tx_pos":6.8572248085
         },
         {
             "date":"2021-02-23T00:00:00.000Z",
-            "tx_incid":219.4517037512,
+            "tx_incid":219.6662608706,
             "R":1.09,
             "taux_occupation_sae":67.9,
-            "tx_pos":7.0669402886
+            "tx_pos":7.0665157139
         },
         {
             "date":"2021-02-24T00:00:00.000Z",
-            "tx_incid":221.7894823653,
+            "tx_incid":222.1575074244,
             "R":null,
             "taux_occupation_sae":67.9,
-            "tx_pos":7.1737558916
+            "tx_pos":7.1750887977
         },
         {
             "date":"2021-02-25T00:00:00.000Z",
-            "tx_incid":222.4167639437,
+            "tx_incid":223.112584602,
             "R":null,
             "taux_occupation_sae":67.8,
-            "tx_pos":7.253263908
+            "tx_pos":7.2593628969
         },
         {
             "date":"2021-02-26T00:00:00.000Z",
-            "tx_incid":null,
+            "tx_incid":221.8908010051,
             "R":null,
             "taux_occupation_sae":68.1,
-            "tx_pos":null
+            "tx_pos":7.2722176401
         },
         {
             "date":"2021-02-27T00:00:00.000Z",
-            "tx_incid":null,
+            "tx_incid":221.7224332655,
             "R":null,
             "taux_occupation_sae":68.3,
-            "tx_pos":null
+            "tx_pos":7.3054955801
         },
         {
             "date":"2021-02-28T00:00:00.000Z",
             "tx_incid":null,
             "R":null,
             "taux_occupation_sae":69.0,
+            "tx_pos":null
+        },
+        {
+            "date":"2021-03-01T00:00:00.000Z",
+            "tx_incid":null,
+            "R":null,
+            "taux_occupation_sae":70.1,
+            "tx_pos":null
+        },
+        {
+            "date":"2021-03-02T00:00:00.000Z",
+            "tx_incid":null,
+            "R":null,
+            "taux_occupation_sae":70.9,
             "tx_pos":null
         }
     ]

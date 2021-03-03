@@ -187,7 +187,7 @@ class MapIndic:
     def map_indicators (self):
         self.indicateur_dpt_plot ()
         
-        for idx in tqdm.tqdm(self.df_indic_dpt.index):
+        for idx in self.df_indic_dpt.index:
             an_indic = self.df_indic_dpt.loc[idx, 'Parametre']
             color = self.determine_color (an_indic, self.df_indic_dpt.loc[idx, 'value'], 20)
             self.df_indic_dpt.at[idx, 'color'] =  color

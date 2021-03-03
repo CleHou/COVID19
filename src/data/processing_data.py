@@ -22,6 +22,7 @@ class WorldDataSet:
         self.df_death = pandas.DataFrame()
         self.df_fra = pandas.DataFrame()
         self.df_world = pandas.DataFrame()
+        self.df_fra_backup = pandas.DataFrame()
     
     def import_db(self):
         self.df_cases, self.df_death = df_fct.import_df(['World_JH_cases', 'World_JH_death'],
@@ -51,26 +52,14 @@ class WorldDataSet:
         ini_date = pandas.to_datetime('2020-04-03', format='%Y-%m-%d')
         last_date_world = self.df_world.index.get_level_values(1).unique('date')[-1]
         last_date_fra = self.df_fra.index[-1]
-        print(self.df_fra)
         if last_date_world <= last_date_fra:
-            self.df_world.loc[('France', ini_date): ('France', last_date), 'cases'] = self.df_fra.loc[ini_date: last_date, ['cases']].values
+            self.df_world.loc[('France', ini_date): ('France', last_date_world), 'cases'] = self.df_fra.loc[ini_date: last_date_world, ['cases']].values
 
         elif last_date_world > last_date_fra:
-            self.df_world.loc['World'] = self.df_world.sum(level='date').values
+            raise ValueError(f'Source data and fra data ({last_date_fra.strftime("%d-%m-%Y")}) not aligned')
+        
+        self.df_world.loc['World'] = self.df_world.sum(level='date').values
     
-    def backup_fra (self, last_date_world):
-        backup_df = pandas.read_csv('https://raw.githubusercontent.com/CleHou/COVID-19-Data-Analysis-Project/backend_2.0/data/raw/covid_data/fra/backupcases.csv')
-        backup_df = backup_df.set_index('Date')
-        backup_df.loc[:,'Cases'] = pandas.to_numeric(backup_df.loc[:,'Cases'], downcast='float')
-        backup_df.index = pandas.to_datetime(backup_df.index)
-
-        last_date_fra_2 = backup_df.index[-1]
-
-        if last_date_world <= last_date_fra_2:
-            self.df_world.loc[('France', ini_date): ('France', last_date), 'cases'] = self.df_fra.loc[ini_date: last_date, ['Cases']].values
-
-        else:
-            raise ValueError('Source data and backup data for France not available')
 
     def complete_data (self):
         for type_data in ['cases', 'death']:
@@ -96,30 +85,55 @@ class WorldDataSet:
 
 class FrenchDataSets:
     def __init__ (self):
-        self.df_fra = df_fct.import_df(['Fra_GenData'],['raw'])[0]
+        self.df_fra, self.df_fra_backup = df_fct.import_df(['Fra_GenData', 'Fra_Backup'],['raw', 'raw'])
         self.df_dpt_shp = df_fct.import_df(['Fra_Departements_shapefile'],['raw'])[0]
         self.df_fra_nat = pandas.DataFrame()
         self.df_fra_reg = pandas.DataFrame()
         self.df_fra_dpt = pandas.DataFrame()
         
     def clean_up_nat (self):
+        self.df_fra_backup = self.df_fra_backup.set_index('date')
+        self.df_fra_backup.loc[:,'cases'] = pandas.to_numeric(self.df_fra_backup.loc[:,'cases'], downcast='float')
+        self.df_fra_backup.index = pandas.to_datetime(self.df_fra_backup.index)
+        
         self.df_fra = self.df_fra.set_index('date')
         self.df_fra = self.df_fra.drop(index=['2020-11_11']).reset_index()
         
-        self.df_fra_nat = self.df_fra[(self.df_fra.loc[:,'granularite']=='pays') & (self.df_fra.loc[:,'source_type']=='ministere-sante')]
-        self.df_fra_nat = self.df_fra_nat.set_index('date')
-        self.df_fra_nat.index = pandas.to_datetime(self.df_fra_nat.index, format='%Y-%m-%d')
-        self.df_fra_nat = self.df_fra_nat.sort_index()
-        self.df_fra_nat['deces_ehpad'] = self.df_fra_nat['deces_ehpad'].fillna(method='ffill').fillna(0)
-        self.df_fra_nat.loc[:,'deces'] = self.df_fra_nat.loc[:,'deces'] + self.df_fra_nat.loc[:,'deces_ehpad']
-        self.df_fra_nat = self.df_fra_nat.loc[:, ['cas_confirmes', 'deces', 'reanimation', 'hospitalises']]
-        self.df_fra_nat = self.df_fra_nat.rename(columns={'cas_confirmes':'cases', 'deces':'death'})
+        df_sort_1 = self.df_fra[(self.df_fra.loc[:,'granularite']=='pays') & (self.df_fra.loc[:,'source_type']=='opencovid19-fr')]
+        df_sort_2 = self.df_fra[(self.df_fra.loc[:,'granularite']=='pays') & (self.df_fra.loc[:,'source_type']=='ministere-sante')]
+        
+        if df_sort_1.index[-1] <= df_sort_2.index[-1]:
+            self.df_fra_nat = df_sort_2.set_index('date')
+            self.df_fra_nat.index = pandas.to_datetime(self.df_fra_nat.index, format='%Y-%m-%d')
+            self.df_fra_nat = self.df_fra_nat.sort_index()
+            self.df_fra_nat['deces_ehpad'] = self.df_fra_nat['deces_ehpad'].fillna(method='ffill').fillna(0)
+            self.df_fra_nat.loc[:,'deces'] = self.df_fra_nat.loc[:,'deces'] + self.df_fra_nat.loc[:,'deces_ehpad']
+            self.df_fra_nat = self.df_fra_nat.loc[:, ['cas_confirmes', 'deces', 'reanimation', 'hospitalises']]
+            self.df_fra_nat = self.df_fra_nat.rename(columns={'cas_confirmes':'cases', 'deces':'death'})
+            self.update_backup()
+            
+        else:
+            self.df_fra_nat = df_sort_1.set_index('date')
+            self.df_fra_nat.index = pandas.to_datetime(self.df_fra_nat.index, format='%Y-%m-%d')
+            self.df_fra_nat = self.df_fra_nat.sort_index()
+            self.df_fra_nat = self.df_fra_nat.loc[:, ['cas_confirmes', 'deces', 'reanimation', 'hospitalises']]
+            self.df_fra_nat = self.df_fra_nat.rename(columns={'cas_confirmes':'cases', 'deces':'death'})
+            
+            if self.df_fra_backup.index[-1] < self.df_fra_nat.index[-1]:
+                raise ValueError(f'Source data and backup data for France ({self.df_fra_backup.index[-1].strftime("%d-%m-%Y")}) not available')
+            
+            else:
+                self.df_fra_nat.loc[self.df_fra_nat.index[0]:self.df_fra_nat.index[-1], ['cases']] = self.df_fra_backup.loc[self.df_fra_nat.index[0]:self.df_fra_nat.index[-1], ['cases']].values
         
         for type_data in ['cases', 'death']:
             self.df_fra_nat.loc[:,f'delta_{type_data}'] = self.df_fra_nat.loc[:,type_data].diff()
             self.df_fra_nat.loc[:,f'growth_{type_data}'] = self.df_fra_nat.loc[:,type_data].pct_change()
             self.df_fra_nat.loc[:,f'weekly_growth_{type_data}'] = self.df_fra_nat.loc[:,type_data].pct_change(periods=7)
-            
+    
+    def update_backup(self):
+        day_after = self.df_fra_backup.index[-1] + pandas.Timedelta(1, unit='d')
+        self.df_fra_backup = pandas.concat([self.df_fra_backup.loc[:,['cases']], self.df_fra_nat.loc[day_after:,['cases']]]) 
+        
     def clean_up_reg (self):
         self.df_fra_reg = self.df_fra[(self.df_fra.loc[:,'granularite']=='region') & (self.df_fra.loc[:,'source_type']=='opencovid19-fr')]
         self.df_fra_reg.loc[:,'date'] = pandas.to_datetime(self.df_fra_reg.loc[:,'date'], format='%Y-%m-%d')
@@ -153,8 +167,8 @@ class FrenchDataSets:
         self.clean_up_reg()
         self.clean_up_dpt()
         
-        df_fct.export_df([['Fra_Nat', self.df_fra_nat], ['Fra_Reg', self.df_fra_reg], ['Fra_Dpt', self.df_fra_dpt]],
-                         ['processed', 'processed', 'processed'])
+        df_fct.export_df([['Fra_Nat', self.df_fra_nat], ['Fra_Reg', self.df_fra_reg], ['Fra_Dpt', self.df_fra_dpt], ['Fra_Backup', self.df_fra_backup]],
+                         ['processed', 'processed', 'processed', 'processed'])
 
 
 class FrenchIndic ():
@@ -424,7 +438,6 @@ class USMapDataSet():
     
     def rel_values (self, df):
         df = getattr(self, df)
-        print(df)
         for type_data in ['cases', 'death']:
             df.loc[:, f'rel_{type_data}'] = df.loc[:, type_data].div(df.loc[:, 'Population']) #cases/1000 of hab
         
@@ -499,7 +512,7 @@ class FrenchMapDataSet ():
         
 
 if __name__ == '__main__':
-    df_fra_dpt_shpe = FrenchDataSets().main()
+    FrenchDataSets().main()
     df_fra_dpt_shpe = FrenchIndic().main()
     df_world = WorldDataSet().main(7, False)
     df_us = USMapDataSet().main()
@@ -507,7 +520,6 @@ if __name__ == '__main__':
     df_vax = FrenchVax ().main()
     fra_testing = FrenchTest().main()
     us_testing = USTest().main()
-    
 
     
     

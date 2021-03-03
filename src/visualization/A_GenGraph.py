@@ -240,14 +240,14 @@ class GeneralSituationGraph ():
     def layout_delta (self, fig, axs):
         self.graph_C_and_D ('cases', fig, axs[0][0])
         self.graph_C_and_D ('death', fig, axs[1][0])
-        self.graph_frate(fig, axs[0][1])
-        self.graph_grate('cases', fig, axs[1][1])
+        self.graph_delta ('cases', fig, axs[0][1])
+        self.graph_delta ('death', fig, axs[1][1])
 
     def layout_growth (self, fig, axs):
         self.graph_C_and_D ('cases', fig, axs[0][0])
         self.graph_C_and_D ('death', fig, axs[1][0])
-        self.graph_delta ('cases', fig, axs[0][1])
-        self.graph_delta ('death', fig, axs[1][1])
+        self.graph_frate(fig, axs[0][1])
+        self.graph_grate('cases', fig, axs[1][1])
 
     def plot (self, layout):
         long_date = self.plotting_dates[1].strftime("%B, %d %Y")
@@ -302,7 +302,6 @@ class GeneralSituationGraph ():
     def main (self):
         self.plot ('delta')
         self.plot ('growth')
-        print(self.world_df)
     
 class StackGraph ():
     def __init__(self, cycle, list_countries, plotting_dates, intv):
@@ -342,7 +341,6 @@ class StackGraph ():
         
         list_date = df_considered.columns
         list_countries = df_considered.index
-        print(df_considered)
         
         prev_val = 0
         for country in list_countries:
@@ -398,7 +396,7 @@ prop_df = pandas.DataFrame(index=['France'],
                              data=[[True, False, [['2020-10-15', '2020-11-09']], [[numpy.nan, numpy.nan]], True, True]])
 plotting_dates = ['2020-03-15', 'last']
 
-def main_gen_graph (type_color):
+def main_gen_graph (type_color, intv):
     cycle = Cycler(type_color, 'general').main()
     
     prop_df_global = pandas.DataFrame(index=['France', 'US', 'Italy', 'Germany'],
@@ -406,27 +404,27 @@ def main_gen_graph (type_color):
                              data=[[False, False, [[numpy.nan, numpy.nan]], [[numpy.nan, numpy.nan]], True, True] for k in range (4)])
     plotting_dates_global = ['2020-03-15', 'last']
     result_reg = LinearRegression(prop_df_global, [20,7]).main()
-    GeneralSituationGraph(prop_df_global, plotting_dates_global, cycle, 21, result_reg).main()
+    GeneralSituationGraph(prop_df_global, plotting_dates_global, cycle, intv, result_reg).main()
     
     prop_df_world = pandas.DataFrame(index=['World'],
                              columns=['Reg_cases', 'Reg_death','Date_cases', 'Date_death', 'growth', 'delta'],
                              data=[[False, False, [[]], [[]], False, True]])
     plotting_dates_world = ['2020-03-15', 'last']
     result_reg = LinearRegression(prop_df_world, [20,7]).main()
-    GeneralSituationGraph(prop_df_world, plotting_dates_world, cycle, 14, result_reg).main()
+    GeneralSituationGraph(prop_df_world, plotting_dates_world, cycle, intv, result_reg).main()
     
     prop_df_fra = pandas.DataFrame(index=['France'],
                              columns=['Reg_cases', 'Reg_death','Date_cases', 'Date_death', 'growth', 'delta'],
                              data=[[True, False, [['2020-10-15', '2020-11-09']], [[numpy.nan, numpy.nan]], True, True]])
     plotting_dates_fra = ['2020-06-05', 'last']
     result_reg = LinearRegression(prop_df_fra, [20,7]).main()
-    GeneralSituationGraph(prop_df_fra, plotting_dates_fra, cycle, 14, result_reg).main()
+    GeneralSituationGraph(prop_df_fra, plotting_dates_fra, cycle, intv-7, result_reg).main()
 
-def main_stack_graph (type_color):
+def main_stack_graph (type_color, intv):
     list_countries = ['United Kingdom', 'Italy', 'Spain', 'France', 'US']
     plotting_dates_global = ['2020-03-15', 'last']
     cycle = Cycler(type_color, 'stack').main()
-    StackGraph(cycle, list_countries, plotting_dates_global, 21).main()
+    StackGraph(cycle, list_countries, plotting_dates_global, intv).main()
 
 if __name__ == '__main__':
     main_gen_graph ('color')

@@ -111,6 +111,17 @@
             "sep":","
         },
         {
+            "index":"Fra_Backup",
+            "link":"https:\/\/raw.githubusercontent.com\/CleHou\/COVID-19-Data-Analysis-Project\/master\/data\/raw\/covid_data\/fra\/backupcases.csv",
+            "type":"Pandas",
+            "update":true,
+            "last_update":null,
+            "file_name":"fra_backup.csv",
+            "sub_dir":"/covid_data/fra",
+            "encoding":"utf-8",
+            "sep":","
+        },
+        {
             "index":"Fra_Indic_Nat",
             "link":"https:\/\/www.data.gouv.fr\/fr\/datasets\/r\/381a9472-ce83-407d-9a64-1b8c23af83df",
             "type":"Pandas",

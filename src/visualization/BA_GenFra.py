@@ -96,9 +96,6 @@ class PlotGenSituation():
         fig.suptitle(f"French data on\n{long_date}", size=16)
         fig.autofmt_xdate()
         
-        logo = image.imread('https://raw.githubusercontent.com/CleHou/COVID-19-Data-Analysis-Project/master/99-Other/99.1-Logo/Logo2_200px.png')
-        fig.figimage(logo, 30, 20, zorder=3)
-        
         fig.text(0.83, 0.05, 'Data source: Santé Publique France \nAnalysis: C.Houzard', fontsize=8)
         
         file_fct.save_fig (fig, 'France_Gen_Situation', self.plotting_dates[1])

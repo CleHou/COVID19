@@ -21,7 +21,7 @@ from src.data_transfer import ftp_transfer
 type_coloring = 'color' #bw
 
 data_import.main(1)
-
+#%%
 processing_data.FrenchDataSets().main()
 processing_data.FrenchIndic().main()
 processing_data.WorldDataSet().main(7, False)
@@ -31,8 +31,8 @@ processing_data.FrenchVax ().main()
 processing_data.FrenchTest().main()
 processing_data.USTest().main()
 
-A_GenGraph.main_gen_graph (type_coloring)
-A_GenGraph.main_stack_graph (type_coloring)
+A_GenGraph.main_gen_graph (type_coloring, 28)
+A_GenGraph.main_stack_graph (type_coloring, 28)
 
 BA_GenFra.main_fct (type_coloring)
 
@@ -44,12 +44,11 @@ BC_FraVax.plotting_vax(type_coloring, 7)
 #C_Maps.
 #E_GraphAllCountries.
 
-F_Testing.plot_testing_us(type_coloring, 21)
-F_Testing.plot_testing_fra(type_coloring, 21)
-
+F_Testing.plot_testing_us(type_coloring, 28)
+F_Testing.plot_testing_fra(type_coloring, 28)
+#%%
 list_files = ["4_countries_delta", "4_countries_growth", "world_delta", "world_growth", "stack_plot", "France_delta", "France_growth",
               "France_Gen_Situation", "France_Indic_Nat", "Map_France_Indic", "Map_France_Prev_tx_incid", "Map_France_Prev_R", "Map_France_Prev_taux_occupation_sae",
               "Map_France_Prev_tx_pos", "French_Vax", "US_Testing", "France_Testing"]
 
 ftp_transfer.upload(list_files, 'daily')
-print('Done')

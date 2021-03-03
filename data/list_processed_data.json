@@ -77,6 +77,14 @@
             "sep":","
         },
         {
+            "index":"Fra_Backup",
+            "type":"Pandas",
+            "file_name":"fra_backup.json",
+            "sub_dir":"/covid_data/fra",
+            "encoding":"utf-8",
+            "sep":","
+        },
+        {
             "index":"Fra_Indic_Nat",
             "type":"Pandas",
             "file_name":"fra_indic_nat.json",
