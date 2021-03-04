@@ -2459,10 +2459,10 @@
         },
         {
             "date":"2021-02-28T00:00:00.000Z",
-            "tx_incid":null,
+            "tx_incid":221.2292498867,
             "R":null,
             "taux_occupation_sae":69.0,
-            "tx_pos":null
+            "tx_pos":7.296832951
         },
         {
             "date":"2021-03-01T00:00:00.000Z",
@@ -2476,6 +2476,13 @@
             "tx_incid":null,
             "R":null,
             "taux_occupation_sae":70.9,
+            "tx_pos":null
+        },
+        {
+            "date":"2021-03-03T00:00:00.000Z",
+            "tx_incid":null,
+            "R":null,
+            "taux_occupation_sae":71.9,
             "tx_pos":null
         }
     ]

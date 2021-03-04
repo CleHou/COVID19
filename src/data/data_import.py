@@ -127,7 +127,7 @@ def get_dates (data_dir, db_list, last_update):
     df = pandas.read_csv(path).set_index('jour')
     df.index = pandas.to_datetime(df.index, format='%Y-%m-%d')
     df = df.sort_index()
-    last_update.loc["Fra_Vax", 'date'] = df.index[-1]
+    last_update.loc["Fra_Vax", 'date'] = df.index[-1]+datetime.timedelta(days=1)
     
     last_update['delta_day'] = last_update.apply(lambda x: (pandas.to_datetime('today')-x["date"]).days,axis=1)
     print(last_update)

@@ -54,12 +54,12 @@ class PlotGenSituation():
     def __init__ (self, intv, plotting_dates, style_cycle, df_title, para_to_plot):
         self.french_df = df_fct.import_df(['Fra_Nat'],['processed'])[0]
         self.intv = intv
-        self.plotting_dates = [pandas.to_datetime(plotting_dates[0])]
         self.style_cycle = style_cycle
         self.root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
         self.df_title = df_title
         self.para_to_plot = para_to_plot
-        
+        self.plotting_dates = [pandas.to_datetime(plotting_dates[0])]
+
         if plotting_dates[1] == 'last':
             self.plotting_dates.append(self.french_df.index.get_level_values('date').unique()[-1])
             

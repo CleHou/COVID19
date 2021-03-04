@@ -11,6 +11,8 @@ import pandas
 import datetime
 import holoviews as hv
 import matplotlib.image as image
+import matplotlib.backends.backend_pdf
+import matplotlib.pyplot as plt
 
 from gen_fct import df_fct
 
@@ -85,31 +87,41 @@ def save_fig (an_object, name, date, **kwargs):
 
     df_fct.save_db_files (db_file, db_file_date)
 
-def save_map (Map, name, date, **kwargs):
+def save_multi_fig (list_objects, name, date, **kwargs):
     db_file, db_file_date = df_fct.write_db_files (name, date, kwargs)
 
-    date_str = date.strftime("%d-%m-%Y")
+    date_str = date.strftime("%Y-%m-%d")
     year = date.strftime("%Y")
     month = date.strftime("%m - %B")
     
     if db_file.loc[name, 'add_date']:
         file_dir = f"{get_parent_dir(2)}/{db_file.loc[name, 'local_path']}/{year}/{month}"
         file_dir_prev = f"{get_parent_dir(2)}/{db_file.loc[name, 'local_path_prev']}/{year}/{month}"
+        file_name = f"{db_file.loc[name, 'pref']}{date_str}{db_file.loc[name, 'suf']}"
 
     else:
         file_dir = f"{get_parent_dir(2)}/{db_file.loc[name, 'local_path']}"
         file_dir_prev = f"{get_parent_dir(2)}/{db_file.loc[name, 'local_path_prev']}"
+        file_name = f"{db_file.loc[name, 'pref']}{db_file.loc[name, 'suf']}"
 
     root = get_parent_dir(2, 'reports')
     creation_folder ('', [file_dir, file_dir_prev])
-    file_name = f"{db_file.loc[name, 'pref']}{date_str}{db_file.loc[name, 'suf']}"
 
-    print('\n\nSaving Map...')
-    renderer = hv.renderer('bokeh')
-    renderer.save(Map, os.path.normcase(f'{file_dir}/{file_name}'))
-    print(f'Map {name} saved')
-    
+    pdf = matplotlib.backends.backend_pdf.PdfPages(os.path.normcase(f'{file_dir}/{file_name}.pdf'))
+
+    for a_fig in list_objects:
+        root_img = get_parent_dir(2, 'data')
+        logo = image.imread(f'{root_img}/logo/Logo2_200px.png')
+        a_fig.figimage(logo, 30, 20, zorder=3)
+        pdf.savefig(a_fig, dpi=200)
+        plt.close(a_fig)
+
+    pdf.close()
+    print(f'Graph {name} saved')
+
+
     df_fct.save_db_files (db_file, db_file_date)
+
 
 
 
