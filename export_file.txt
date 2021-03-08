@@ -28,4 +28,4 @@ https://houzardc.fr/wp-content/uploads/Graphs/US_Testing_preview.png
 https://houzardc.fr/wp-content/uploads/Graphs/France_Testing.pdf
 https://houzardc.fr/wp-content/uploads/Graphs/France_Testing_preview.png
 https://houzardc.fr/wp-content/uploads/Graphs/All countries.pdf
-https://houzardc.fr/wp-content/uploads/Graphs/All countries_preview.png
+https://houzardc.fr/wp-content/uploads/Graphs/.png

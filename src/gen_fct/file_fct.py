@@ -88,6 +88,9 @@ def save_fig (an_object, name, date, **kwargs):
     df_fct.save_db_files (db_file, db_file_date)
 
 def save_multi_fig (list_objects, name, date, **kwargs):
+    #list_objects = list_objects[1:]
+    #preview_fig = list_objects[0]
+
     db_file, db_file_date = df_fct.write_db_files (name, date, kwargs)
 
     date_str = date.strftime("%Y-%m-%d")
@@ -104,12 +107,13 @@ def save_multi_fig (list_objects, name, date, **kwargs):
         file_dir_prev = f"{get_parent_dir(2)}/{db_file.loc[name, 'local_path_prev']}"
         file_name = f"{db_file.loc[name, 'pref']}{db_file.loc[name, 'suf']}"
 
-    root = get_parent_dir(2, 'reports')
     creation_folder ('', [file_dir, file_dir_prev])
+
+    list_objects[0].savefig(os.path.normcase(f'{file_dir_prev}/{file_name}_preview.png'), format='png', dpi=300)
 
     pdf = matplotlib.backends.backend_pdf.PdfPages(os.path.normcase(f'{file_dir}/{file_name}.pdf'))
 
-    for a_fig in list_objects:
+    for a_fig in list_objects[1:]:
         root_img = get_parent_dir(2, 'data')
         logo = image.imread(f'{root_img}/logo/Logo2_200px.png')
         a_fig.figimage(logo, 30, 20, zorder=3)

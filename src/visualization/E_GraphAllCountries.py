@@ -94,6 +94,7 @@ class GraphAll:
         long_date = self.plotting_dates[-1].strftime("%d %B, %Y")
         num_pages = len(self.list_chunks)
         list_fig = []
+        list_fig.append(self.preview())
         
         for a_chunk, page in tqdm.tqdm(list(zip(self.list_chunks, range(num_pages+1))), desc=self.name_plot):
             sub_title = self.title(a_chunk)
@@ -174,6 +175,51 @@ class GraphAll:
                 title += f', {a_country}'
             
         return title
+    
+    def preview (self):
+        tot_len = len(self.list_countries)
+        long_date = self.plotting_dates[-1].strftime("%d %B, %Y")
+        short_date = self.plotting_dates[-1].strftime('%Y-%m-%d')
+        a_para = ["cases"]
+        
+        if tot_len >= 12:
+            fig, axs = plt.subplots(3, 4, num=f'Preview {short_date}', figsize=(11.7, 8.3))
+            list_countries = self.list_countries[:12]
+            
+        elif tot_len >=9:
+            fig, axs = plt.subplots(3, 3, num=f'Preview {short_date}', figsize=(11.7, 8.3))
+            list_countries = self.list_countries[:9]
+            
+        elif tot_len >=4:
+            fig, axs = plt.subplots(2, 2, num=f'Preview {short_date}', figsize=(11.7, 8.3))
+            list_countries = self.list_countries[:4]
+            
+        elif tot_len >=2:
+            fig, axs = plt.subplots(1, 2, num=f'Preview {short_date}', figsize=(11.7, 8.3))
+            list_countries = self.list_countries[:2]
+            
+        elif tot_len ==1:
+            fig, axs = plt.subplots(1, 1, num=f'Preview {short_date}', figsize=(11.7, 8.3))
+            list_countries = self.list_countries[:1]
+        
+        for k, a_style in zip(range(1), self.style_cycle()):
+            style = a_style
+        
+        for a_country, an_axs in zip(list_countries, numpy.ravel(axs)):
+            a_df = self.data_df.loc[(a_country, self.plotting_dates[0]): (a_country, self.plotting_dates[1]), a_para[0]]
+            a_df.index = a_df.index.remove_unused_levels()
+            list_date = a_df.index.levels[1]
+            an_axs.plot(list_date, a_df, **style)
+            an_axs.set_title (a_country)
+            an_axs.set_ylabel(a_para[0])
+            an_axs.grid()
+            
+        fig.suptitle(f'Covid-19 situation on {long_date}\nFor {tot_len} countries', fontsize=16)
+        fig.autofmt_xdate()
+        fig.text(0.83, 0.05, 'Source: John Hopkins University \nGraph: C.Houzard', fontsize=8)
+        fig.show()
+        return fig
+            
     
     def main(self):
         self.select_countries()

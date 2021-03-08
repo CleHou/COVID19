@@ -53,4 +53,3 @@ list_files = ["4_countries_delta", "4_countries_growth", "world_delta", "world_g
 
 ftp_transfer.upload(list_files, 'daily')
 ftp_transfer.LinkExport(list_files, 'daily').path_to_file()
-    files.path_to_file()

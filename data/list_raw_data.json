@@ -36,6 +36,30 @@
             {
                 "name":"sep",
                 "type":"string"
+            },
+            {
+                "name":"index_name",
+                "type":"string"
+            },
+            {
+                "name":"date_format",
+                "type":"string"
+            },
+            {
+                "name":"drop_col",
+                "type":"string"
+            },
+            {
+                "name":"drop_val",
+                "type":"string"
+            },
+            {
+                "name":"time_delta",
+                "type":"number"
+            },
+            {
+                "name":"id_vars",
+                "type":"string"
             }
         ],
         "primaryKey":[
@@ -51,9 +75,15 @@
             "update":true,
             "last_update":null,
             "file_name":"world_jh_cases.csv",
-            "sub_dir":"/covid_data/world",
+            "sub_dir":"\/covid_data\/world",
             "encoding":"utf-8",
-            "sep":","
+            "sep":",",
+            "index_name":"date",
+            "date_format":"",
+            "drop_col":"Province\/State,Lat,Long",
+            "drop_val":"",
+            "time_delta":0.0,
+            "id_vars":"Country\/Region"
         },
         {
             "index":"World_JH_death",
@@ -62,9 +92,15 @@
             "update":true,
             "last_update":null,
             "file_name":"world_jh_death.csv",
-            "sub_dir":"/covid_data/world",
+            "sub_dir":"\/covid_data\/world",
             "encoding":"utf-8",
-            "sep":","
+            "sep":",",
+            "index_name":"date",
+            "date_format":"",
+            "drop_col":"Province\/State,Lat,Long",
+            "drop_val":"",
+            "time_delta":0.0,
+            "id_vars":"Country\/Region"
         },
         {
             "index":"US_JH_cases",
@@ -73,9 +109,15 @@
             "update":true,
             "last_update":null,
             "file_name":"us_jh_cases.csv",
-            "sub_dir":"/covid_data/us",
+            "sub_dir":"\/covid_data\/us",
             "encoding":"utf-8",
-            "sep":","
+            "sep":",",
+            "index_name":"date",
+            "date_format":"",
+            "drop_col":"UID,iso2,iso3,code3,FIPS,Lat,Long_,Country_Region,Admin2,Combined_Key",
+            "drop_val":"",
+            "time_delta":0.0,
+            "id_vars":"Province_State"
         },
         {
             "index":"US_JH_death",
@@ -84,9 +126,15 @@
             "update":true,
             "last_update":null,
             "file_name":"us_jh_death.csv",
-            "sub_dir":"/covid_data/us",
+            "sub_dir":"\/covid_data\/us",
             "encoding":"utf-8",
-            "sep":","
+            "sep":",",
+            "index_name":"date",
+            "date_format":"",
+            "drop_col":"UID,code3,iso2,iso3,Admin2,FIPS,Lat,Long_,Population,Country_Region,Combined_Key",
+            "drop_val":"",
+            "time_delta":0.0,
+            "id_vars":"Province_State"
         },
         {
             "index":"US_Testing",
@@ -95,9 +143,15 @@
             "update":true,
             "last_update":null,
             "file_name":"us_testing.csv",
-            "sub_dir":"/covid_data/us",
+            "sub_dir":"\/covid_data\/us",
             "encoding":"utf-8",
-            "sep":","
+            "sep":",",
+            "index_name":"date",
+            "date_format":"%Y%m%d",
+            "drop_col":null,
+            "drop_val":null,
+            "time_delta":0.0,
+            "id_vars":null
         },
         {
             "index":"Fra_GenData",
@@ -106,20 +160,32 @@
             "update":true,
             "last_update":null,
             "file_name":"fra_gendata.csv",
-            "sub_dir":"/covid_data/fra",
+            "sub_dir":"\/covid_data\/fra",
             "encoding":"utf-8",
-            "sep":","
+            "sep":",",
+            "index_name":"date",
+            "date_format":"%Y-%m-%d",
+            "drop_col":null,
+            "drop_val":"2020-11_11",
+            "time_delta":0.0,
+            "id_vars":null
         },
         {
             "index":"Fra_Backup",
-            "link":"https:\/\/raw.githubusercontent.com\/CleHou\/COVID-19-Data-Analysis-Project\/master\/data\/raw\/covid_data\/fra\/backupcases.csv",
+            "link":"https:\/\/raw.githubusercontent.com\/CleHou\/COVID-19-Data-Analysis-Project\/master\/data\/raw\/covid_data\/fra\/fra_backup.csv",
             "type":"Pandas",
             "update":true,
             "last_update":null,
             "file_name":"fra_backup.csv",
-            "sub_dir":"/covid_data/fra",
+            "sub_dir":"\/covid_data\/fra",
             "encoding":"utf-8",
-            "sep":","
+            "sep":",",
+            "index_name":"date",
+            "date_format":"%Y-%m-%d",
+            "drop_col":null,
+            "drop_val":null,
+            "time_delta":0.0,
+            "id_vars":null
         },
         {
             "index":"Fra_Indic_Nat",
@@ -128,9 +194,15 @@
             "update":true,
             "last_update":null,
             "file_name":"fra_indic_nat.csv",
-            "sub_dir":"/covid_data/fra",
+            "sub_dir":"\/covid_data\/fra",
             "encoding":"utf-8",
-            "sep":","
+            "sep":",",
+            "index_name":"extract_date",
+            "date_format":"%Y-%m-%d",
+            "drop_col":null,
+            "drop_val":null,
+            "time_delta":0.0,
+            "id_vars":null
         },
         {
             "index":"Fra_Indic_Dpt",
@@ -139,20 +211,32 @@
             "update":true,
             "last_update":null,
             "file_name":"fra_indic_dpt.csv",
-            "sub_dir":"/covid_data/fra",
+            "sub_dir":"\/covid_data\/fra",
             "encoding":"utf-8",
-            "sep":","
+            "sep":",",
+            "index_name":"extract_date",
+            "date_format":"%Y-%m-%d",
+            "drop_col":null,
+            "drop_val":null,
+            "time_delta":0.0,
+            "id_vars":null
         },
         {
             "index":"Fra_Testing1",
             "link":"https:\/\/www.data.gouv.fr\/fr\/datasets\/r\/b4ea7b4b-b7d1-4885-a099-71852291ff20",
             "type":"Pandas",
-            "update":true,
+            "update":false,
             "last_update":null,
             "file_name":"fra_testing1.csv",
-            "sub_dir":"/covid_data/fra",
+            "sub_dir":"\/covid_data\/fra",
             "encoding":"utf-8",
-            "sep":";"
+            "sep":";",
+            "index_name":"jour",
+            "date_format":"%Y-%m-%d",
+            "drop_col":null,
+            "drop_val":null,
+            "time_delta":0.0,
+            "id_vars":null
         },
         {
             "index":"Fra_Testing2",
@@ -161,9 +245,15 @@
             "update":true,
             "last_update":null,
             "file_name":"fra_testing2.csv",
-            "sub_dir":"/covid_data/fra",
+            "sub_dir":"\/covid_data\/fra",
             "encoding":"utf-8",
-            "sep":";"
+            "sep":";",
+            "index_name":"jour",
+            "date_format":"%Y-%m-%d",
+            "drop_col":null,
+            "drop_val":null,
+            "time_delta":3.0,
+            "id_vars":null
         },
         {
             "index":"Fra_Vax",
@@ -172,9 +262,15 @@
             "update":true,
             "last_update":null,
             "file_name":"fra_vax.csv",
-            "sub_dir":"/covid_data/fra",
+            "sub_dir":"\/covid_data\/fra",
             "encoding":"utf-8",
-            "sep":","
+            "sep":";",
+            "index_name":"jour",
+            "date_format":"%Y-%m-%d",
+            "drop_col":null,
+            "drop_val":null,
+            "time_delta":1.0,
+            "id_vars":null
         },
         {
             "index":"Countries_LatLong",
@@ -183,9 +279,15 @@
             "update":false,
             "last_update":null,
             "file_name":"contries_LatLong.csv",
-            "sub_dir":"/gen_data",
+            "sub_dir":"\/gen_data",
             "encoding":"utf-8",
-            "sep":","
+            "sep":",",
+            "index_name":null,
+            "date_format":null,
+            "drop_col":null,
+            "drop_val":null,
+            "time_delta":null,
+            "id_vars":null
         },
         {
             "index":"US_States_shapefile",
@@ -194,9 +296,15 @@
             "update":false,
             "last_update":null,
             "file_name":"US_States_shapefile.shp",
-            "sub_dir":"/shapefile/us/states",
+            "sub_dir":"\/shapefile\/us\/states",
             "encoding":"utf-8",
-            "sep":","
+            "sep":",",
+            "index_name":null,
+            "date_format":null,
+            "drop_col":null,
+            "drop_val":null,
+            "time_delta":null,
+            "id_vars":null
         },
         {
             "index":"Fra_Regions_shapefile",
@@ -205,9 +313,15 @@
             "update":false,
             "last_update":null,
             "file_name":"Fra_Regions_shapefile.shp",
-            "sub_dir":"/shapefile/fra/regions",
+            "sub_dir":"\/shapefile\/fra\/regions",
             "encoding":"utf-8",
-            "sep":","
+            "sep":",",
+            "index_name":null,
+            "date_format":null,
+            "drop_col":null,
+            "drop_val":null,
+            "time_delta":null,
+            "id_vars":null
         },
         {
             "index":"Fra_Departements_shapefile",
@@ -216,9 +330,15 @@
             "update":false,
             "last_update":null,
             "file_name":"Fra_Departement_shapefile.shp",
-            "sub_dir":"/shapefile/fra/departement",
+            "sub_dir":"\/shapefile\/fra\/departement",
             "encoding":"utf-8",
-            "sep":","
+            "sep":",",
+            "index_name":null,
+            "date_format":null,
+            "drop_col":null,
+            "drop_val":null,
+            "time_delta":null,
+            "id_vars":null
         },
         {
             "index":"World_pop",
@@ -227,9 +347,15 @@
             "update":false,
             "last_update":null,
             "file_name":"world_pop.csv",
-            "sub_dir":"/gen_data",
+            "sub_dir":"\/gen_data",
             "encoding":"utf-8",
-            "sep":","
+            "sep":",",
+            "index_name":null,
+            "date_format":null,
+            "drop_col":null,
+            "drop_val":null,
+            "time_delta":null,
+            "id_vars":null
         },
         {
             "index":"US_pop",
@@ -238,9 +364,15 @@
             "update":false,
             "last_update":null,
             "file_name":"us_pop.csv",
-            "sub_dir":"/gen_data",
+            "sub_dir":"\/gen_data",
             "encoding":"utf-8",
-            "sep":","
+            "sep":",",
+            "index_name":null,
+            "date_format":null,
+            "drop_col":null,
+            "drop_val":null,
+            "time_delta":null,
+            "id_vars":null
         },
         {
             "index":"Fra_pop",
@@ -249,9 +381,15 @@
             "update":false,
             "last_update":null,
             "file_name":"fra_pop.csv",
-            "sub_dir":"/gen_data",
+            "sub_dir":"\/gen_data",
             "encoding":"utf-8",
-            "sep":","
+            "sep":",",
+            "index_name":null,
+            "date_format":null,
+            "drop_col":null,
+            "drop_val":null,
+            "time_delta":null,
+            "id_vars":null
         },
         {
             "index":"Country_by_continent",
@@ -260,9 +398,15 @@
             "update":false,
             "last_update":null,
             "file_name":"country_by_continent.csv",
-            "sub_dir":"/gen_data",
+            "sub_dir":"\/gen_data",
             "encoding":"utf-8",
-            "sep":","
+            "sep":",",
+            "index_name":null,
+            "date_format":null,
+            "drop_col":null,
+            "drop_val":null,
+            "time_delta":null,
+            "id_vars":null
         },
         {
             "index":"Dept_reg",
@@ -271,9 +415,15 @@
             "update":false,
             "last_update":null,
             "file_name":"dept-and-regions.csv",
-            "sub_dir":"/gen_data",
+            "sub_dir":"\/gen_data",
             "encoding":"utf-8",
-            "sep":","
+            "sep":",",
+            "index_name":null,
+            "date_format":null,
+            "drop_col":null,
+            "drop_val":null,
+            "time_delta":null,
+            "id_vars":null
         }
     ]
 }

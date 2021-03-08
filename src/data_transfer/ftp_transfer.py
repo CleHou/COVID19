@@ -234,13 +234,17 @@ class LinkExport:
     
     def path_to_file (self):
         self.return_path()
+        root = os.path.normcase(file_fct.get_parent_dir(2, 'src/data_transfer'))
+        print(root)
         
         if self.type_transfer == 'daily':
-            export_file = open('export_file.txt', 'w')
+            file_path = os.path.normcase(f'{root}/export_file.txt')
+            export_file = open(file_path, 'w')
             
         elif self.type_transfer == 'article':
             today = date.today().strftime("%Y-%m-%d")
-            export_file = open(f'export_file_{today}.txt', 'w')
+            file_path = os.path.normcase(f'{root}/export_file_{today}.txt')
+            export_file = open(file_path, 'w')
             
         for a_name in self.list_names:
             if a_name[-1] != '/':
@@ -262,7 +266,7 @@ if __name__ == '__main__':
     list_files = ["4_countries_delta", "4_countries_growth", "world_delta", "world_growth", "stack_plot", "France_delta", "France_growth",
               "France_Gen_Situation", "France_Indic_Nat", "Map_France_Indic", "Map_France_Prev_tx_incid", "Map_France_Prev_R", "Map_France_Prev_taux_occupation_sae",
               "Map_France_Prev_tx_pos", "French_Vax", "US_Testing", "France_Testing", "All countries"]
-    upload (list_files, 'daily')
+    #upload (list_files, 'daily')
     files = LinkExport(list_files, 'daily')
     files.path_to_file()
 
