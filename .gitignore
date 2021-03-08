@@ -177,3 +177,4 @@ data/raw/covid_data/fra/fra_vax.csv
 .env
 *.geojson
 reports
+.DS_Store
