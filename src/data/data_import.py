@@ -38,8 +38,8 @@ def import_and_save(df_name, root, source_df):
     if source_df.loc[df_name, 'type'] == 'Pandas':
         importing_df = pandas.read_csv(source_df.loc[df_name, 'link'], 
                                        sep=source_df.loc[df_name, 'sep'],
-                                       encoding=source_df.loc[df_name, 'encoding'],
-                                       dtype='object')
+                                       encoding=source_df.loc[df_name, 'encoding'])
+        
         importing_df.to_csv(save_path, index=False, sep=source_df.loc[df_name, 'sep'])
         
         
