@@ -68,6 +68,7 @@ class WorldDataSet:
             self.df_world.loc[:,f'weekly_growth_{type_data}'] = self.df_world.loc[:,type_data].groupby(level='country').pct_change(periods=7)
         
         self.df_world.loc[:,'fatality_rate'] = self.df_world.loc[:,'cases'].div(self.df_world.loc[:,'death'])
+        self.df_world.loc[:,'fatality_rate'] = self.df_world.loc[:,'fatality_rate']/10
     
     def smooth (self, period, center):
         self.df_world = self.df_world.rolling(window = period, center=center).mean()
@@ -512,6 +513,9 @@ class FrenchMapDataSet ():
         
 
 if __name__ == '__main__':
+    df_world = WorldDataSet().main(7, False)
+    df = df_world.loc['France']
+    """
     FrenchDataSets().main()
     df_fra_dpt_shpe = FrenchIndic().main()
     df_world = WorldDataSet().main(7, False)
@@ -520,6 +524,7 @@ if __name__ == '__main__':
     df_vax = FrenchVax ().main()
     fra_testing = FrenchTest().main()
     us_testing = USTest().main()
+    """
 
     
     
