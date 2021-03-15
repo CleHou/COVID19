@@ -128,7 +128,7 @@ class LinearRegression():
 
     
 class GeneralSituationGraph ():
-    def __init__ (self, prop_df, plotting_dates, style_cycle, intv, result_reg):
+    def __init__ (self, prop_df, plotting_dates, style_cycle, intv, result_reg, fig_size):
         self.world_df = df_fct.import_df(['World_JH'],['processed'])[0]
         self.world_df = self.world_df.ffill()
         self.prop_df = prop_df
@@ -138,6 +138,7 @@ class GeneralSituationGraph ():
         self.style_cycle = style_cycle
         self.root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
         self.result_reg = result_reg
+        self.fig_size = fig_size
         
         if plotting_dates[1] == 'last':
             self.plotting_dates.append(self.world_df.index.get_level_values('date').unique()[-1])
@@ -254,10 +255,10 @@ class GeneralSituationGraph ():
         short_date = self.plotting_dates[1].strftime("%d-%m-%Y")
         
         if len(self.list_countries) >1:
-            fig, axs = plt.subplots(2, 2, num=f'Covid-19 plot {layout} on {long_date}', figsize=(15,15)) #Grid 2x2
+            fig, axs = plt.subplots(2, 2, num=f'Covid-19 plot {layout} on {long_date}', figsize=self.fig_size) #Grid 2x2
             
         else:
-            fig, axs = plt.subplots(2, 2, num=f'Covid-19 plot {layout} {self.list_countries[-1]} on {short_date}', figsize=(15,15)) #Grid 2x2
+            fig, axs = plt.subplots(2, 2, num=f'Covid-19 plot {layout} {self.list_countries[-1]} on {short_date}', figsize=self.fig_size) #Grid 2x2
             
         fig.text(0.87, 0.05, 'Source: John Hopkins University\nGraph: C.Houzard', fontsize=8)
         
@@ -304,13 +305,14 @@ class GeneralSituationGraph ():
         self.plot ('growth')
     
 class StackGraph ():
-    def __init__(self, cycle, list_countries, plotting_dates, intv):
+    def __init__(self, cycle, list_countries, plotting_dates, intv, fig_size):
         self.world_df = df_fct.import_df(['World_JH'],['processed'])[0]
         self.cycle = cycle
         self.list_countries = list_countries
         self.plotting_dates = [pandas.to_datetime(plotting_dates[0])]
         self.intv = intv
         self.root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+        self.fig_size = fig_size
         
         if plotting_dates[1] == 'last':
             self.plotting_dates.append(self.world_df.index.get_level_values('date').unique()[-1])
@@ -367,7 +369,7 @@ class StackGraph ():
     def plot_stack (self):
         long_date = self.plotting_dates[-1].strftime("%d %B, %Y")
         
-        fig, axs = plt.subplots(1, 2, num=f'Covid-19 plot on {long_date}\nStacked plot', figsize=(15,15)) #Grid 2x2
+        fig, axs = plt.subplots(1, 2, num=f'Covid-19 plot on {long_date}\nStacked plot', figsize=self.fig_size) #Grid 2x2
         fig.text(0.87, 0.05, 'Source: John Hopkins University \nGraph: C.Houzard', fontsize=8)
         
         for type_graph, label_xy, axes in zip(['cases', 'death'], [50000, 500], numpy.ravel(axs)):
@@ -396,7 +398,7 @@ prop_df = pandas.DataFrame(index=['France'],
                              data=[[True, False, [['2020-10-15', '2020-11-09']], [[numpy.nan, numpy.nan]], True, True]])
 plotting_dates = ['2020-03-15', 'last']
 
-def main_gen_graph (type_color, intv):
+def main_gen_graph (type_color, intv, fig_size):
     cycle = Cycler(type_color, 'general').main()
     
     prop_df_global = pandas.DataFrame(index=['France', 'US', 'Italy', 'Germany'],
@@ -404,31 +406,32 @@ def main_gen_graph (type_color, intv):
                              data=[[False, False, [[numpy.nan, numpy.nan]], [[numpy.nan, numpy.nan]], True, True] for k in range (4)])
     plotting_dates_global = ['2020-03-15', 'last']
     result_reg = LinearRegression(prop_df_global, [20,7]).main()
-    GeneralSituationGraph(prop_df_global, plotting_dates_global, cycle, intv, result_reg).main()
+    GeneralSituationGraph(prop_df_global, plotting_dates_global, cycle, intv, result_reg, fig_size).main()
     
     prop_df_world = pandas.DataFrame(index=['World'],
                              columns=['Reg_cases', 'Reg_death','Date_cases', 'Date_death', 'growth', 'delta'],
                              data=[[False, False, [[]], [[]], False, True]])
     plotting_dates_world = ['2020-03-15', 'last']
     result_reg = LinearRegression(prop_df_world, [20,7]).main()
-    GeneralSituationGraph(prop_df_world, plotting_dates_world, cycle, intv, result_reg).main()
+    GeneralSituationGraph(prop_df_world, plotting_dates_world, cycle, intv, result_reg, fig_size).main()
     
     prop_df_fra = pandas.DataFrame(index=['France'],
                              columns=['Reg_cases', 'Reg_death','Date_cases', 'Date_death', 'growth', 'delta'],
                              data=[[True, False, [['2020-10-15', '2020-11-09']], [[numpy.nan, numpy.nan]], True, True]])
     plotting_dates_fra = ['2020-06-05', 'last']
     result_reg = LinearRegression(prop_df_fra, [20,7]).main()
-    GeneralSituationGraph(prop_df_fra, plotting_dates_fra, cycle, intv-7, result_reg).main()
+    GeneralSituationGraph(prop_df_fra, plotting_dates_fra, cycle, intv-7, result_reg, fig_size).main()
 
-def main_stack_graph (type_color, intv):
+def main_stack_graph (type_color, intv, fig_size):
     list_countries = ['United Kingdom', 'Italy', 'Spain', 'France', 'US']
     plotting_dates_global = ['2020-03-15', 'last']
     cycle = Cycler(type_color, 'stack').main()
-    StackGraph(cycle, list_countries, plotting_dates_global, intv).main()
+    StackGraph(cycle, list_countries, plotting_dates_global, intv, fig_size).main()
 
 if __name__ == '__main__':
-    main_gen_graph ('color')
-    main_stack_graph ('color')
+    fig_size = (14,7)
+    main_gen_graph ('color', 28, fig_size)
+    main_stack_graph ('color', 28, fig_size)
     
 
 

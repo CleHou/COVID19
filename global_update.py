@@ -19,6 +19,7 @@ from src.visualization import F_Testing
 from src.data_transfer import ftp_transfer
 
 type_coloring = 'color' #bw
+fig_size = (14, 7)
 
 data_import.main(1)
 
@@ -31,8 +32,8 @@ processing_data.FrenchVax ().main()
 processing_data.FrenchTest().main()
 processing_data.USTest().main()
 
-A_GenGraph.main_gen_graph (type_coloring, 28)
-A_GenGraph.main_stack_graph (type_coloring, 28)
+A_GenGraph.main_gen_graph (type_coloring, 28, fig_size)
+A_GenGraph.main_stack_graph (type_coloring, 28, fig_size)
 
 BA_GenFra.main_fct (type_coloring)
 
