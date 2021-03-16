@@ -95,7 +95,7 @@ def read_db_files ():
         db_file_date = pandas.read_json(f'{data_dir}/list_files_date.json', orient = "table")
     else:
         db_file_date = pandas.DataFrame(index=db_file.index, columns=['date'])
-        db_file_date.loc['date'] = pandas.to_datetime(db_file_date.loc['date'])
+        db_file_date.loc[:,'date'] = pandas.to_datetime(db_file_date.loc[:,'date'])
 
     return db_file, db_file_date
 

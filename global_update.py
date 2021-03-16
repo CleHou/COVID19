@@ -32,10 +32,10 @@ processing_data.FrenchMapDataSet().main()
 processing_data.FrenchVax ().main()
 processing_data.FrenchTest().main()
 processing_data.USTest().main()
-
+#%%
 A_GenGraph.main_gen_graph (type_coloring, 28, fig_size)
 A_GenGraph.main_stack_graph (type_coloring, 28, fig_size)
-
+#%%
 BA_GenFra.main_fct (type_coloring, fig_size)
 
 BB_FraIndic.plotting_indic(type_coloring, 21, fig_size)
