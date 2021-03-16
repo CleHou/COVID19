@@ -89,7 +89,13 @@ def export_df (list_df, list_prop): #list_df = [['name', df], ..., ], list_prop 
 def read_db_files ():
     data_dir = file_fct.get_parent_dir(2, 'data')
     db_file = pandas.read_json(f'{data_dir}/list_files.json', orient = "table")
-    db_file_date = pandas.read_json(f'{data_dir}/list_files_date.json', orient = "table")
+
+    list_dir, list_files = file_fct.list_dir_files(f'{data_dir}')
+    if 'list_files_date.json' in list_files:
+        db_file_date = pandas.read_json(f'{data_dir}/list_files_date.json', orient = "table")
+    else:
+        db_file_date = pandas.DataFrame(index=db_file.index, columns=['date'])
+        db_file_date.loc['date'] = pandas.to_datetime(db_file_date.loc['date'])
 
     return db_file, db_file_date
 

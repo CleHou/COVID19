@@ -235,8 +235,8 @@ class MapIndic:
     def map_preview (self):
         indicateur_dpt = self.df_indic_dpt_prev.loc[[self.date_final]]
         date = self.date_final.strftime(format='%d-%m-%Y')
-        
-        for an_indic in tqdm.tqdm(self.list_indicateur):
+        print('Creating preview...')
+        for an_indic in self.list_indicateur:
             val_min = self.parameter_prev.loc[an_indic].iloc[0]
             
             final_cmap, val_max = self.creation_cmap (indicateur_dpt, an_indic)
@@ -259,7 +259,7 @@ class MapIndic:
         self.map_preview()
 
     
-def plotting_indic (type_color, fig_size, intv):
+def plotting_indic (type_color, intv, fig_size):
     style_cycle, fill_cycle = Cycler(type_color).main()
     plotting_dates = ['2020-03-19', 'last']
     df_title = pandas.DataFrame(index=['tx_incid', 'R', 'taux_occupation_sae', 'tx_pos'],
@@ -286,5 +286,5 @@ def mapping_indic ():
     
 if __name__ == '__main__':
     fig_size = (14,7)
-    plotting_indic('color', fig_size, 21)
+    plotting_indic('color', 21, fig_size)
     mapping_indic()

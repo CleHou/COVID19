@@ -22,63 +22,63 @@
         },
         {
             "index":"4_countries_delta",
-            "date":"2021-03-14T00:00:00.000Z"
+            "date":"2021-03-15T00:00:00.000Z"
         },
         {
             "index":"4_countries_growth",
-            "date":"2021-03-14T00:00:00.000Z"
+            "date":"2021-03-15T00:00:00.000Z"
         },
         {
             "index":"France_delta",
-            "date":"2021-03-14T00:00:00.000Z"
+            "date":"2021-03-15T00:00:00.000Z"
         },
         {
             "index":"France_growth",
-            "date":"2021-03-14T00:00:00.000Z"
+            "date":"2021-03-15T00:00:00.000Z"
         },
         {
             "index":"world_delta",
-            "date":"2021-03-14T00:00:00.000Z"
+            "date":"2021-03-15T00:00:00.000Z"
         },
         {
             "index":"world_growth",
-            "date":"2021-03-14T00:00:00.000Z"
+            "date":"2021-03-15T00:00:00.000Z"
         },
         {
             "index":"stack_plot",
-            "date":"2021-03-14T00:00:00.000Z"
+            "date":"2021-03-15T00:00:00.000Z"
         },
         {
             "index":"France_Gen_Situation",
-            "date":"2021-03-14T00:00:00.000Z"
+            "date":"2021-03-15T00:00:00.000Z"
         },
         {
             "index":"France_Indic_Nat",
-            "date":"2021-03-14T00:00:00.000Z"
+            "date":"2021-03-15T00:00:00.000Z"
         },
         {
             "index":"Map_France_Indic",
-            "date":"2021-03-14T00:00:00.000Z"
+            "date":"2021-03-15T00:00:00.000Z"
         },
         {
             "index":"Map_France_Prev_tx_incid",
-            "date":"2021-03-14T00:00:00.000Z"
+            "date":"2021-03-15T00:00:00.000Z"
         },
         {
             "index":"Map_France_Prev_R",
-            "date":"2021-03-14T00:00:00.000Z"
+            "date":"2021-03-15T00:00:00.000Z"
         },
         {
             "index":"Map_France_Prev_taux_occupation_sae",
-            "date":"2021-03-14T00:00:00.000Z"
+            "date":"2021-03-15T00:00:00.000Z"
         },
         {
             "index":"Map_France_Prev_tx_pos",
-            "date":"2021-03-14T00:00:00.000Z"
+            "date":"2021-03-15T00:00:00.000Z"
         },
         {
             "index":"French_Vax",
-            "date":"2021-03-13T00:00:00.000Z"
+            "date":"2021-03-14T00:00:00.000Z"
         },
         {
             "index":"US_Testing",
@@ -86,11 +86,11 @@
         },
         {
             "index":"France_Testing",
-            "date":"2021-03-10T00:00:00.000Z"
+            "date":"2021-03-11T00:00:00.000Z"
         },
         {
             "index":"All countries",
-            "date":"2021-03-14T00:00:00.000Z"
+            "date":"2021-03-15T00:00:00.000Z"
         }
     ]
 }

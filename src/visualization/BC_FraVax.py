@@ -111,7 +111,7 @@ def plotting_vax (type_color, intv, fig_size):
     style_cycle = Cycler(type_color).main()
     plotting_dates = ['2020-03-19', 'last']
     
-    FrenchVax(style_cycle, intv, plotting_dates).main()
+    FrenchVax(style_cycle, intv, fig_size, plotting_dates).main()
     
 if __name__ == '__main__':
     fig_size = (14,7)
