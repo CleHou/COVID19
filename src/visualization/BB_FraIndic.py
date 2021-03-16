@@ -236,6 +236,7 @@ class MapIndic:
         indicateur_dpt = self.df_indic_dpt_prev.loc[[self.date_final]]
         date = self.date_final.strftime(format='%d-%m-%Y')
         print('Creating preview...')
+        
         for an_indic in self.list_indicateur:
             val_min = self.parameter_prev.loc[an_indic].iloc[0]
             

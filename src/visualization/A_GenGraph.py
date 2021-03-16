@@ -298,7 +298,7 @@ class GeneralSituationGraph ():
                 file_fct.save_fig (fig, f'{self.list_countries[-1]}_{layout}', self.plotting_dates[1], local_path=local_path, local_path_prev=local_path_prev,
                           ftp_path=ftp_path, pref=pref, suf='', add_date=True, type_file='Graph')
         
-        plt.show()
+        #plt.show()
         
     def main (self):
         self.plot ('delta')
