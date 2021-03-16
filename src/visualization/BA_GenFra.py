@@ -51,7 +51,7 @@ class Cycler():
         return cycle
     
 class PlotGenSituation():
-    def __init__ (self, intv, plotting_dates, style_cycle, df_title, para_to_plot):
+    def __init__ (self, intv, fig_size, plotting_dates, style_cycle, df_title, para_to_plot):
         self.french_df = df_fct.import_df(['Fra_Nat'],['processed'])[0]
         self.intv = intv
         self.style_cycle = style_cycle
@@ -59,6 +59,7 @@ class PlotGenSituation():
         self.df_title = df_title
         self.para_to_plot = para_to_plot
         self.plotting_dates = [pandas.to_datetime(plotting_dates[0])]
+        self.fig_size = fig_size
 
         if plotting_dates[1] == 'last':
             self.plotting_dates.append(self.french_df.index.get_level_values('date').unique()[-1])
@@ -78,7 +79,7 @@ class PlotGenSituation():
         
         new_df = self.french_df.loc[self.plotting_dates[0]:self.plotting_dates[-1]]
         
-        fig, axs = plt.subplots(2,2, figsize=(15,15), num=f'Evolution of prediction on {short_date}')                             
+        fig, axs = plt.subplots(2,2, figsize=self.fig_size, num=f'Evolution of prediction on {short_date}')                             
         
         for axes, para, style in zip(numpy.ravel(axs), self.para_to_plot, self.style_cycle()):
             axes.plot(new_df.index, new_df.loc[:,para], label=self.df_title.loc[para, 'title'], **style)
@@ -105,7 +106,7 @@ class PlotGenSituation():
         self.plot()
 
          
-def main_fct (type_color):
+def main_fct (type_color, fig_size):
     cycle = Cycler(type_color).main()
     
     df_title = pandas.DataFrame(index=['reanimation', 'hospitalises', 'delta_cases', 'delta_death'],
@@ -115,11 +116,12 @@ def main_fct (type_color):
     para_to_plot = ['reanimation', 'hospitalises', 'delta_cases', 'delta_death']
     
     plotting_dates = ['2020-03-15', 'last']
-    fra = PlotGenSituation(21, plotting_dates, cycle, df_title, para_to_plot).main()
+    fra = PlotGenSituation(21, fig_size, plotting_dates, cycle, df_title, para_to_plot).main()
     return fra
     
 if __name__ == '__main__':
-    fra = main_fct ('color')
+    fig_size=(14,7)
+    fra = main_fct ('color', fig_size)
     
     
     

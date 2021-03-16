@@ -124,6 +124,7 @@ class FrenchDataSets:
                 raise ValueError(f'Source data and backup data for France ({self.df_fra_backup.index[-1].strftime("%d-%m-%Y")}) not available')
             
             else:
+                print('Using backup data')
                 self.df_fra_nat.loc[self.df_fra_nat.index[0]:self.df_fra_nat.index[-1], ['cases']] = self.df_fra_backup.loc[self.df_fra_nat.index[0]:self.df_fra_nat.index[-1], ['cases']].values
         
         for type_data in ['cases', 'death']:

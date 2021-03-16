@@ -38,7 +38,7 @@ class Cycler:
         return style_cycle
     
 class Testing:
-    def __init__ (self, style_cycle, intv, country, name_df, plotting_dates, to_plot, df_title, plots_titles, data_source):
+    def __init__ (self, style_cycle, intv, fig_size, country, name_df, plotting_dates, to_plot, df_title, plots_titles, data_source):
         self.style_cycle = style_cycle
         self.intv = intv
         self.country = country
@@ -47,6 +47,7 @@ class Testing:
         self.df_title = df_title
         self.plots_titles = plots_titles
         self.data_source = data_source
+        self.fig_size = fig_size
         
         self.plotting_dates = [pandas.to_datetime(plotting_dates[0])]
         
@@ -61,7 +62,7 @@ class Testing:
         short_date = self.plotting_dates[-1].strftime("%Y-%m-%d")
         
         plotting_df = self.df.loc[self.plotting_dates[0]: self.plotting_dates[1],: ]
-        fig, axs = plt.subplots(1,2, figsize=(15,15), num=f'Testing {self.country} {short_date}')
+        fig, axs = plt.subplots(1,2, figsize=self.fig_size, num=f'Testing {self.country} {short_date}')
         k=1
         style0 = [style for style in self.style_cycle][0]
         
@@ -109,7 +110,7 @@ class Testing:
     def main(self):
         self.plot()
     
-def plot_testing_us(type_color, intv):
+def plot_testing_us(type_color, intv, fig_size):
     style_cycle = Cycler(type_color).main()
     
     plotting_dates = ['16-03-2020', 'last']
@@ -124,9 +125,9 @@ def plot_testing_us(type_color, intv):
     plots_titles = ['Rate of positive tests and daily number of cases', 'Rate of positive tests and daily number of tests']
     data_source = 'The COVID Tracking Project'
 
-    Testing(style_cycle, 21, 'US', 'US_Testing', plotting_dates, to_plot, df_title, plots_titles, data_source).main()
+    Testing(style_cycle, 21, fig_size, 'US', 'US_Testing', plotting_dates, to_plot, df_title, plots_titles, data_source).main()
 
-def plot_testing_fra(type_color, intv):
+def plot_testing_fra(type_color, intv, fig_size):
     style_cycle = Cycler(type_color).main()
     
     plotting_dates = ['16-03-2020', 'last']
@@ -139,10 +140,11 @@ def plot_testing_fra(type_color, intv):
     plots_titles = ['Rate of positive tests and daily number of cases', 'Rate of positive tests and daily number of tests']
     data_source = 'Santé Publique France'
 
-    Testing(style_cycle, 21, 'France', 'Fra_Testing', plotting_dates, to_plot, df_title, plots_titles, data_source).main()
+    Testing(style_cycle, 21, fig_size, 'France', 'Fra_Testing', plotting_dates, to_plot, df_title, plots_titles, data_source).main()
     
 
 if __name__ == '__main__':
-    plot_testing_us('color', 21)
-    plot_testing_fra('color', 21)
+    fig_size = (14,7)
+    plot_testing_us('color', 21, fig_size)
+    plot_testing_fra('color', 21, fig_size)
         

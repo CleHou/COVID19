@@ -51,11 +51,12 @@ class Cycler:
         return style_cycle
         
 class FrenchVax:
-    def __init__(self, style_cycle, intv, plotting_dates):
+    def __init__(self, style_cycle, intv, fig_size, plotting_dates):
         self.data_vax = df_fct.import_df(['Fra_Vax'],['processed'])[0]
         self.style_cycle = style_cycle
         self.intv = intv
         self.plotting_dates = [pandas.to_datetime(plotting_dates[0])]
+        self.fig_size = fig_size
         
         self.data_vax.sort_index(level=['nom','date'], inplace=True)
         
@@ -70,7 +71,7 @@ class FrenchVax:
         short_date = self.plotting_dates[-1].strftime("%Y-%m-%d")
         vax_j = int(self.data_vax.loc[self.data_vax.index[1],'vax journalier'] - self.data_vax.loc[self.data_vax.index[0],'vax journalier'])
         
-        fig, axes = plt.subplots(1,1, figsize=(15,15), num=f'Nombre de vaccins {short_date}') 
+        fig, axes = plt.subplots(1,1, figsize=self.fig_size, num=f'Nombre de vaccins {short_date}') 
         
         list_to_plot = ['total_vaccines', 'vax journalier']
         list_label = ['Total vaccinés', f'Moyenne vaccinés/j\n({vax_j}/j)']
@@ -106,11 +107,12 @@ class FrenchVax:
     def main(self):
         self.plot_vax()
     
-def plotting_vax (type_color, intv):
+def plotting_vax (type_color, intv, fig_size):
     style_cycle = Cycler(type_color).main()
     plotting_dates = ['2020-03-19', 'last']
     
     FrenchVax(style_cycle, intv, plotting_dates).main()
     
 if __name__ == '__main__':
-    plotting_vax('color', 7)
+    fig_size = (14,7)
+    plotting_vax('color', 7, fig_size)

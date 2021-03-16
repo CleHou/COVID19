@@ -55,7 +55,7 @@ class Cycler:
         return style_cycle, fill_cycle
 
 class PlotIndic:
-    def __init__ (self, intv, plotting_dates, style_cycle, fill_cycle, para_to_plot, df_title):
+    def __init__ (self, intv, fig_size, plotting_dates, style_cycle, fill_cycle, para_to_plot, df_title):
         self.french_indic_nat = df_fct.import_df(['Fra_Indic_Nat'],['processed'])[0]
         self.intv = intv
         self.plotting_dates = [pandas.to_datetime(plotting_dates[0])]
@@ -64,6 +64,7 @@ class PlotIndic:
         self.root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
         self.to_plot = para_to_plot
         self.df_title = df_title
+        self.fig_size = fig_size
         
         if plotting_dates[1] == 'last':
             self.plotting_dates.append(self.french_indic_nat.index.get_level_values('date').unique()[-1])
@@ -77,7 +78,7 @@ class PlotIndic:
         
         new_df = self.french_indic_nat.loc[self.plotting_dates[0]:self.plotting_dates[-1]]
         
-        fig, axs = plt.subplots(2,2, figsize=(15,15), num=f'Indicateurs français {short_date}')                             
+        fig, axs = plt.subplots(2,2, figsize=self.fig_size, num=f'Indicateurs français {short_date}')                             
         
         for axes, para, style in zip(numpy.ravel(axs), self.to_plot, self.style_cycle()):
             if numpy.isnan(new_df.loc[self.plotting_dates[0], para]):
@@ -258,7 +259,7 @@ class MapIndic:
         self.map_preview()
 
     
-def plotting_indic (type_color, intv):
+def plotting_indic (type_color, fig_size, intv):
     style_cycle, fill_cycle = Cycler(type_color).main()
     plotting_dates = ['2020-03-19', 'last']
     df_title = pandas.DataFrame(index=['tx_incid', 'R', 'taux_occupation_sae', 'tx_pos'],
@@ -266,7 +267,7 @@ def plotting_indic (type_color, intv):
                             data = [["Taux d'indicidence", "Activité épidémique (%)",(0, 10, 50)], ["Facteur de reproduction R0", '$R_0$',(0, 1, 1.5)], ['Taux d’occupation des lits en ICU', 'Tension hospitalière (%)',(0, 40, 60)], ['Taux de positivité des tests', 'Taux de positivité (%)',(0, 5, 10)]])
     para_to_plot = ['tx_incid', 'R', 'taux_occupation_sae', 'tx_pos']
     
-    PlotIndic(intv, plotting_dates, style_cycle, fill_cycle, para_to_plot, df_title).main_fct()
+    PlotIndic(intv, fig_size, plotting_dates, style_cycle, fill_cycle, para_to_plot, df_title).main_fct()
     
 def mapping_indic ():
     list_indicateur = ['tx_incid', 'R', 'taux_occupation_sae', 'tx_pos']
@@ -284,5 +285,6 @@ def mapping_indic ():
     
     
 if __name__ == '__main__':
-    plotting_indic('color', 21)
+    fig_size = (14,7)
+    plotting_indic('color', fig_size, 21)
     mapping_indic()

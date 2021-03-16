@@ -20,6 +20,7 @@ from src.data_transfer import ftp_transfer
 
 type_coloring = 'color' #bw
 fig_size = (14, 7)
+fig_size_A4 = (11.7, 8.3)
 
 data_import.main(1)
 
@@ -35,18 +36,18 @@ processing_data.USTest().main()
 A_GenGraph.main_gen_graph (type_coloring, 28, fig_size)
 A_GenGraph.main_stack_graph (type_coloring, 28, fig_size)
 
-BA_GenFra.main_fct (type_coloring)
+BA_GenFra.main_fct (type_coloring, fig_size)
 
-BB_FraIndic.plotting_indic(type_coloring, 21)
+BB_FraIndic.plotting_indic(type_coloring, 21, fig_size)
 BB_FraIndic.mapping_indic()
 
-BC_FraVax.plotting_vax(type_coloring, 7)
+BC_FraVax.plotting_vax(type_coloring, 7, fig_size)
 
 #C_Maps.
-E_GraphAllCountries.plot_all_world(type_coloring, 28)
+E_GraphAllCountries.plot_all_world(type_coloring, 28, fig_size_A4)
 
-F_Testing.plot_testing_us(type_coloring, 28)
-F_Testing.plot_testing_fra(type_coloring, 28)
+F_Testing.plot_testing_us(type_coloring, 28, fig_size)
+F_Testing.plot_testing_fra(type_coloring, 28, fig_size)
 
 list_files = ["4_countries_delta", "4_countries_growth", "world_delta", "world_growth", "stack_plot", "France_delta", "France_growth",
               "France_Gen_Situation", "France_Indic_Nat", "Map_France_Indic", "Map_France_Prev_tx_incid", "Map_France_Prev_R", "Map_France_Prev_taux_occupation_sae",

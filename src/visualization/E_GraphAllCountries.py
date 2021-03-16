@@ -41,7 +41,7 @@ class Cycler:
         return style_cycle
     
 class GraphAll:
-    def __init__ (self, intv, style_cycle, df, cut_off, idx_names, sort_by, drop, per_graph, para_to_plot, plotting_dates, name_plot, title_graph):
+    def __init__ (self, intv, fig_size, style_cycle, df, cut_off, idx_names, sort_by, drop, per_graph, para_to_plot, plotting_dates, name_plot, title_graph):
         self.intv = intv
         self.style_cycle = style_cycle
         self.data_df = df_fct.import_df([df],['processed'])[0]
@@ -54,6 +54,7 @@ class GraphAll:
         self.plotting_dates = [pandas.to_datetime(plotting_dates[0])]
         self.name_plot = name_plot
         self.title_graph = title_graph
+        self.fig_size = fig_size
 
         if plotting_dates[1] == 'last':
             self.plotting_dates.append(self.data_df.index.get_level_values('date').unique()[-1])
@@ -98,7 +99,7 @@ class GraphAll:
         
         for a_chunk, page in tqdm.tqdm(list(zip(self.list_chunks, range(num_pages+1))), desc=self.name_plot):
             sub_title = self.title(a_chunk)
-            fig, axs = plt.subplots(2, 2, num=f'{self.name_plot} {page+1}/{num_pages}', figsize=(11.7, 8.3))
+            fig, axs = plt.subplots(2, 2, num=f'{self.name_plot} {page+1}/{num_pages}', figsize=self.fig_size)
           
             for an_axs, a_para in zip(numpy.ravel(axs), self.para_to_plot):
                 scd_axes, scd_axes_country = self.axes_or_not (a_chunk, a_para)
@@ -229,7 +230,7 @@ class GraphAll:
         
     
     
-def plot_all_world (type_color, intv):
+def plot_all_world (type_color, intv, fig_size):
     style_cycle = Cycler(type_color).main()
     
     para_to_plot = [('cases', True), ('delta_cases', False), ('death', True), ('delta_death', False)]
@@ -237,16 +238,17 @@ def plot_all_world (type_color, intv):
                                index=['cases', 'death', 'delta_cases', 'delta_death'],
                                data = ['Number of cases', 'Number of dead', 'Daily number of cases', 'Daily number of dead'])
     plotting_dates = ['2020-03-15', 'last']
-    df = GraphAll(intv, style_cycle, 'World_JH', 0.01, ['country', 'date'], 'cases', (True, 'World'), 1, para_to_plot, plotting_dates, 'All countries', title_graph).main()
+    df = GraphAll(intv, fig_size, style_cycle, 'World_JH', 0.01, ['country', 'date'], 'cases', (True, 'World'), 1, para_to_plot, plotting_dates, 'All countries', title_graph).main()
     return df
 
-def plot_all_states (type_color, intv):
+def plot_all_states (type_color, intv, fig_size):
     style_cycle = Cycler(type_color).main()
     
     GraphAll(intv, style_cycle).main()
     
 if __name__ == '__main__':
-    df = plot_all_world('color', 21)
+    fig_size = (11.7, 8.3)
+    df = plot_all_world('color', 21, fig_size)
     #plot_all_states('color', 21)
     
     
