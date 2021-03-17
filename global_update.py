@@ -17,6 +17,7 @@ from src.visualization import E_GraphAllCountries
 from src.visualization import F_Testing
 
 from src.data_transfer import ftp_transfer
+from src.data_transfer import pdf_creation
 
 type_coloring = 'color' #bw
 fig_size = (14, 7)
@@ -36,7 +37,7 @@ processing_data.USTest().main()
 
 A_GenGraph.main_gen_graph (type_coloring, days, fig_size)
 A_GenGraph.main_stack_graph (type_coloring, days, fig_size)
-"""
+
 BA_GenFra.main_fct (type_coloring, fig_size)
 
 BB_FraIndic.plotting_indic(type_coloring, days-2*7, fig_size)
@@ -56,4 +57,7 @@ list_files = ["4_countries_delta", "4_countries_growth", "world_delta", "world_g
 
 ftp_transfer.upload(list_files, 'daily')
 ftp_transfer.LinkExport(list_files, 'daily').path_to_file()
-"""
+
+pdf_creation.merging_pdf(list_files).main()
+
+
