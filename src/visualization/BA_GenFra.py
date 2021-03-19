@@ -106,7 +106,7 @@ class PlotGenSituation():
         self.plot()
 
          
-def main_fct (type_color, fig_size):
+def main_fct (type_color, intv, fig_size):
     cycle = Cycler(type_color).main()
     
     df_title = pandas.DataFrame(index=['reanimation', 'hospitalises', 'delta_cases', 'delta_death'],
@@ -116,12 +116,13 @@ def main_fct (type_color, fig_size):
     para_to_plot = ['reanimation', 'hospitalises', 'delta_cases', 'delta_death']
     
     plotting_dates = ['2020-03-15', 'last']
-    fra = PlotGenSituation(21, fig_size, plotting_dates, cycle, df_title, para_to_plot).main()
+    fra = PlotGenSituation(intv, fig_size, plotting_dates, cycle, df_title, para_to_plot).main()
     return fra
     
 if __name__ == '__main__':
     fig_size=(14,7)
-    fra = main_fct ('color', fig_size)
+    intv=21
+    fra = main_fct ('color', intv, fig_size)
     
     
     

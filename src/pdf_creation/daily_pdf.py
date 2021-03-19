@@ -54,7 +54,7 @@ class merging_pdf:
             pdf_writer.addPage(page_object)
         #os.remove(full_path)
                 
-        for a_file in list_files:
+        for a_file in self.list_files:
             if self.db_files.loc[a_file, 'type_file'] == 'Graph':
                 full_name = self.full_path (a_file) 
                 file = open(full_name, 'rb')
@@ -66,6 +66,7 @@ class merging_pdf:
                     
         file_fct.save_pdf (pdf_writer, self.date)
         file.close()
+        os.remove(full_path)
         
     def var_template (self):
         final_dic = {}

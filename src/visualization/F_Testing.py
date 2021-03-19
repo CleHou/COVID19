@@ -125,7 +125,7 @@ def plot_testing_us(type_color, intv, fig_size):
     plots_titles = ['Rate of positive tests and daily number of cases', 'Rate of positive tests and daily number of tests']
     data_source = 'The COVID Tracking Project'
 
-    Testing(style_cycle, 21, fig_size, 'US', 'US_Testing', plotting_dates, to_plot, df_title, plots_titles, data_source).main()
+    Testing(style_cycle, intv, fig_size, 'US', 'US_Testing', plotting_dates, to_plot, df_title, plots_titles, data_source).main()
 
 def plot_testing_fra(type_color, intv, fig_size):
     style_cycle = Cycler(type_color).main()
@@ -140,7 +140,7 @@ def plot_testing_fra(type_color, intv, fig_size):
     plots_titles = ['Rate of positive tests and daily number of cases', 'Rate of positive tests and daily number of tests']
     data_source = 'Santé Publique France'
 
-    Testing(style_cycle, 21, fig_size, 'France', 'Fra_Testing', plotting_dates, to_plot, df_title, plots_titles, data_source).main()
+    Testing(style_cycle, intv, fig_size, 'France', 'Fra_Testing', plotting_dates, to_plot, df_title, plots_titles, data_source).main()
     
 
 if __name__ == '__main__':
