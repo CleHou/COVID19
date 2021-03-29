@@ -51,12 +51,13 @@ class Cycler:
         return style_cycle
         
 class FrenchVax:
-    def __init__(self, style_cycle, intv, fig_size, plotting_dates):
+    def __init__(self, style_cycle, intv, fig_size, plotting_dates, df_title):
         self.data_vax = df_fct.import_df(['Fra_Vax'],['processed'])[0]
         self.style_cycle = style_cycle
         self.intv = intv
         self.plotting_dates = [pandas.to_datetime(plotting_dates[0])]
         self.fig_size = fig_size
+        self.df_title = df_title
         
         self.data_vax.sort_index(level=['nom','date'], inplace=True)
         
@@ -71,24 +72,32 @@ class FrenchVax:
         short_date = self.plotting_dates[-1].strftime("%Y-%m-%d")
         vax_j = int(self.data_vax.loc[self.data_vax.index[1],'vax journalier'] - self.data_vax.loc[self.data_vax.index[0],'vax journalier'])
         
-        fig, axes = plt.subplots(1,1, figsize=self.fig_size, num=f'Nombre de vaccins {short_date}') 
+        fig, axs = plt.subplots(1,2, figsize=self.fig_size, num=f'Nombre de vaccins {short_date}') 
         
-        list_to_plot = ['total_vaccines', 'vax journalier']
-        list_label = ['Total vaccinés', f'Moyenne vaccinés/j\n({vax_j}/j)']
+        list_to_plot = [['total_vaccines'], ['total_vaccines', 'vaccin jour']]
+        list_title = ['Total personnes vaccinées', f'Total personnes vaccinées et vacinées/j']
         
-        for para, title, style in zip(list_to_plot, list_label, self.style_cycle()):
-            axes.plot(self.data_vax.index[:-1], self.data_vax.loc[self.data_vax.index[:-1],para], label=title, **style)
-        prop_axs = axes.secondary_yaxis('right', functions=(self.nb_to_prop, self.prop_to_nb))
-        #axes.axhline(y=0.6*60*10**6, linestyle='--', color='#2F4F4F', linewidth=0.75)
-        
-        axes.set_ylabel('Total vaccinées')
-        prop_axs.set_ylabel('Prop. de la population vaccinées (%)')
-        
-        axes.set_xlabel('Date')
-        axes.grid()
-        axes.xaxis.set_major_formatter(dates.DateFormatter('%d/%m/%Y'))
-        axes.xaxis.set_major_locator(dates.DayLocator(interval=self.intv))
-        
+        for set_para, axes, graph_title in zip(list_to_plot, numpy.ravel(axs), list_title):
+            for para, style in zip(set_para, self.style_cycle()):
+                if len(set_para) > 1 and para != set_para[0]:
+                    axs2 = axes.twinx()
+                    axs2.plot(self.data_vax.index[:-1], self.data_vax.loc[self.data_vax.index[:-1],para], label=self.df_title.loc[para, 'Label'], **style)
+                    axs2.set_ylabel(self.df_title.loc[para, 'Title'], color=style['color'])
+                    axs2.tick_params(axis='y', labelcolor=style['color'])
+                    
+                else:
+                    axes.plot(self.data_vax.index[:-1], self.data_vax.loc[self.data_vax.index[:-1],para], label=self.df_title.loc[para, 'Label'], **style)
+                    axes.set_ylabel(self.df_title.loc[para, 'Title'])
+            
+                    if len(set_para) == 1 and set_para[0] == 'total_vaccines':
+                        prop_axs = axes.secondary_yaxis('right', functions=(self.nb_to_prop, self.prop_to_nb))
+                        prop_axs.set_ylabel('Prop. de la population vaccinées (%)')
+            
+            axes.set_xlabel('Date')
+            axes.grid()
+            axes.xaxis.set_major_formatter(dates.DateFormatter('%Y-%m-%d'))
+            axes.xaxis.set_major_locator(dates.DayLocator(interval=self.intv)) 
+            
         fig.autofmt_xdate()
         
         fig.legend(loc="center right", borderaxespad=0.5)
@@ -110,8 +119,11 @@ class FrenchVax:
 def plotting_vax (type_color, intv, fig_size):
     style_cycle = Cycler(type_color).main()
     plotting_dates = ['2020-03-19', 'last']
+    df_title = pandas.DataFrame(index=['total_vaccines', 'vaccin jour'],
+                            columns=['Title', 'Label'],
+                            data = [['Total vaccinées', 'Vaccinées'], ['Vaccinées par jour', 'Vaccinées/j']])
     
-    FrenchVax(style_cycle, intv, fig_size, plotting_dates).main()
+    FrenchVax(style_cycle, intv, fig_size, plotting_dates, df_title).main()
     
 if __name__ == '__main__':
     fig_size = (14,7)

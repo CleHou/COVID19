@@ -244,7 +244,13 @@ def plot_all_world (type_color, intv, fig_size):
 def plot_all_states (type_color, intv, fig_size):
     style_cycle = Cycler(type_color).main()
     
-    GraphAll(intv, style_cycle).main()
+    para_to_plot = [('cases', True), ('delta_cases', False), ('death', True), ('delta_death', False)]
+    title_graph = pandas.DataFrame(columns=['Title'], 
+                               index=['cases', 'death', 'delta_cases', 'delta_death'],
+                               data = ['Number of cases', 'Number of dead', 'Daily number of cases', 'Daily number of dead'])
+    plotting_dates = ['2020-03-15', 'last']
+    df = GraphAll(intv, fig_size, style_cycle, 'World_JH', 0.01, ['country', 'date'], 'cases', (True, 'World'), 1, para_to_plot, plotting_dates, 'All countries', title_graph).main()
+    
     
 if __name__ == '__main__':
     fig_size = (11.7, 8.3)

@@ -93,6 +93,14 @@
             "sep":","
         },
         {
+            "index":"Fra_Indic_Dpt_graph",
+            "type":"Pandas",
+            "file_name":"fra_indic_dpt_graph.json",
+            "sub_dir":"/covid_data/fra",
+            "encoding":"utf-8",
+            "sep":","
+        },
+        {
             "index":"Fra_Indic_Dpt",
             "type":"GeoPandas",
             "file_name":"fra_indic_dpt.geojson",

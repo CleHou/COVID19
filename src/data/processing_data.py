@@ -64,7 +64,7 @@ class WorldDataSet:
     def complete_data (self):
         for type_data in ['cases', 'death']:
             self.df_world.loc[:,f'delta_{type_data}'] = self.df_world.loc[:,type_data].groupby(level='country').diff()
-            self.df_world.loc[:,f'growth_{type_data}'] = self.df_world.loc[:,type_data].groupby(level='country').pct_change()
+            self.df_world.loc[:,f'growth_{type_data}'] = self.df_world.loc[:,type_data].groupby(level='country').pct_change()*100
             self.df_world.loc[:,f'weekly_growth_{type_data}'] = self.df_world.loc[:,type_data].groupby(level='country').pct_change(periods=7)
         
         self.df_world.loc[:,'fatality_rate'] = self.df_world.loc[:,'cases'].div(self.df_world.loc[:,'death'])
@@ -194,19 +194,24 @@ class FrenchIndic ():
         self.df_indic_dpt = self.df_indic_dpt.sort_index(level='extract_date')
         self.df_indic_dpt = self.df_indic_dpt.sort_index(level='departement')
         self.df_indic_dpt = self.df_indic_dpt.fillna(method='ffill')
-        self.df_indic_dpt = self.df_indic_dpt.join(self.df_dpt_shp)
-        self.df_indic_dpt = gpd.GeoDataFrame(self.df_indic_dpt)
-        self.df_indic_dpt = self.df_indic_dpt.dropna(subset=['nom'])
-        self.df_indic_dpt = self.df_indic_dpt.sort_index(level='extract_date')
+        
+        self.df_indic_dpt_graph = self.df_indic_dpt.swaplevel().sort_index()
+        self.df_indic_dpt_graph = self.df_indic_dpt_graph.drop(columns=['tx_incid_couleur', 'R_couleur', 
+                                                                        'taux_occupation_sae_couleur', 'tx_pos_couleur', 'nb_orange', 'nb_rouge'])
+        
+        self.df_indic_dpt_map = self.df_indic_dpt.join(self.df_dpt_shp)
+        self.df_indic_dpt_map = gpd.GeoDataFrame(self.df_indic_dpt_map)
+        self.df_indic_dpt_map = self.df_indic_dpt_map.dropna(subset=['nom'])
+        self.df_indic_dpt_map = self.df_indic_dpt_map.sort_index(level='extract_date')
 
     def main(self):
         self.indic_nat ()
         self.indic_dpt()
 
-        df_fct.export_df([['Fra_Indic_Nat', self.df_indic_nat]],
-                         ['processed'])
+        df_fct.export_df([['Fra_Indic_Nat', self.df_indic_nat], ['Fra_Indic_Dpt_graph', self.df_indic_dpt_graph]],
+                         ['processed', 'processed'])
 
-        return self.df_indic_dpt
+        return self.df_indic_dpt_map
 
 
 class FrenchVax ():
@@ -217,7 +222,8 @@ class FrenchVax ():
         self.data_vax.loc[:,'date'] = pandas.to_datetime(self.data_vax.loc[:,'jour'])
         self.data_vax = self.data_vax.drop(columns=['jour'])
         self.data_vax = self.data_vax.set_index(['date'])
-        self.data_vax = self.data_vax.rename(columns={'n_dose1': 'Vaccin jour', 'n_cum_dose1':'total_vaccines'})
+        self.data_vax = self.data_vax.rename(columns={'n_dose1': 'vaccin jour', 'n_cum_dose1':'total_vaccines'})
+        self.data_vax.loc[:,'vaccin jour'] = self.data_vax.loc[:,'vaccin jour'].rolling(window=7, center=False).mean() 
         
         dv = self.data_vax.loc[self.data_vax.index[-1],'total_vaccines'] - self.data_vax.loc[self.data_vax.index[0], 'total_vaccines']
         dt = (self.data_vax.index[-1] - self.data_vax.index[0]).days
@@ -514,11 +520,10 @@ class FrenchMapDataSet ():
         
 
 if __name__ == '__main__':
-    df_world = WorldDataSet().main(7, False)
-    df = df_world.loc['France']
+    #FrenchDataSets().main()
+    #df_fra_dpt_shpe= FrenchIndic().main()
+    df_vax = FrenchVax ().main()
     """
-    FrenchDataSets().main()
-    df_fra_dpt_shpe = FrenchIndic().main()
     df_world = WorldDataSet().main(7, False)
     df_us = USMapDataSet().main()
     df_fra = FrenchMapDataSet().main()

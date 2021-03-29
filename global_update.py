@@ -40,10 +40,11 @@ A_GenGraph.main_stack_graph (type_coloring, days, fig_size)
 
 BA_GenFra.main_fct (type_coloring, days-1*7, fig_size)
 
-BB_FraIndic.plotting_indic(type_coloring, days-1*7, fig_size)
+BB_FraIndic.plotting_indic_nat(type_coloring, days-1*7, fig_size)
+BB_FraIndic.plotting_indic_dpt(type_coloring, days-2*7, fig_size)
 BB_FraIndic.mapping_indic()
 
-BC_FraVax.plotting_vax(type_coloring, days-2*7, fig_size)
+BC_FraVax.plotting_vax(type_coloring, days-3*7, fig_size)
 
 #C_Maps.
 E_GraphAllCountries.plot_all_world(type_coloring, days, fig_size_A4)
@@ -53,7 +54,8 @@ F_Testing.plot_testing_fra(type_coloring, days, fig_size)
 
 list_files = ["4_countries_delta", "4_countries_growth", "world_delta", "world_growth", "stack_plot", "France_delta", "France_growth",
               "France_Gen_Situation", "France_Indic_Nat", "Map_France_Indic", "Map_France_Prev_tx_incid", "Map_France_Prev_R", "Map_France_Prev_taux_occupation_sae",
-              "Map_France_Prev_tx_pos", "French_Vax", "US_Testing", "France_Testing", "All countries"]
+              "Map_France_Prev_tx_pos", "French_Vax", "US_Testing", "France_Testing", "All countries", "France_Indic_Dpt"
+              ]
 
 ftp_transfer.upload(list_files, 'daily')
 ftp_transfer.LinkExport(list_files, 'daily').path_to_file()

@@ -144,6 +144,17 @@
             "preview":true
         },
         {
+            "index":"France_Indic_Dpt",
+            "local_path":"reports\/France\/Indic\/PDF",
+            "local_path_prev":"reports\/France\/Indic\/png",
+            "ftp_path":"\/www\/wp-content\/uploads\/Graphs",
+            "pref":"France_Indic_Dpt_",
+            "suf":"",
+            "add_date":true,
+            "type_file":"Graph",
+            "preview":true
+        },
+        {
             "index":"Map_France_Indic",
             "local_path":"reports\/France\/Indic\/Maps",
             "local_path_prev":"reports\/France\/Indic\/Maps",

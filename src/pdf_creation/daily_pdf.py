@@ -100,8 +100,11 @@ class merging_pdf:
         year = self.date.strftime("%Y")
         month = self.date.strftime("%m - %B")
     
-        file_dir = f"{self.root}/reports/Daily_PDF/{year}/{month}"
-        file_name = f"First_page_{date_str}"
+        #file_dir = f"{self.root}/reports/Daily_PDF/{year}/{month}"
+        #file_name = f"First_page_{date_str}"
+        file_dir = f"{self.root}/reports/Daily_PDF"
+        file_name = "First_page"
+        
         file_fct.creation_folder ('', [file_dir])
         full_path = os.path.normcase(f'{file_dir}/{file_name}.docx')
         

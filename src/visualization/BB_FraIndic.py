@@ -46,7 +46,7 @@ class Cycler:
 
     def main(self):
         if self.type_style == 'color':
-            style_cycle = self.line[:-1] * self.linewidth * self.marker[-1:] * self.color[:1]
+            style_cycle = self.line * self.linewidth * self.marker[-1:] * self.color[:1]
             fill_cycle = self.color_fill * self.alpha[-1:]
         else:
             style_cycle = self.color[-1:] * self.markevery_c * self.linewidth
@@ -56,7 +56,7 @@ class Cycler:
 
 class PlotIndic:
     def __init__ (self, intv, fig_size, plotting_dates, style_cycle, fill_cycle, para_to_plot, df_title):
-        self.french_indic_nat = df_fct.import_df(['Fra_Indic_Nat'],['processed'])[0]
+        self.french_indic_nat, self.french_indic_dpt = df_fct.import_df(['Fra_Indic_Nat', 'Fra_Indic_Dpt_graph'],['processed', 'processed'])
         self.intv = intv
         self.plotting_dates = [pandas.to_datetime(plotting_dates[0])]
         self.style_cycle = style_cycle
@@ -80,38 +80,109 @@ class PlotIndic:
         
         fig, axs = plt.subplots(2,2, figsize=self.fig_size, num=f'Indicateurs français {short_date}')                             
         
-        for axes, para, style in zip(numpy.ravel(axs), self.to_plot, self.style_cycle()):
-            if numpy.isnan(new_df.loc[self.plotting_dates[0], para]):
-                new_df.loc[self.plotting_dates[0], para] = 0
-                
-            if max(new_df.loc[:,para]) < self.df_title.loc[para, 'Val_limite'][2]:
-                last_val_lim = 1.1*self.df_title.loc[para, 'Val_limite'][2]
-            else : 
-                last_val_lim = 1.1*max(new_df.loc[:,para])
-            list_val_lim = [self.df_title.loc[para, 'Val_limite'][k] for k in range(3)]
-            list_val_lim.append(last_val_lim)
-                
-            axes.plot(new_df.index, new_df.loc[:,para], label=self.df_title.loc[para, 'Title'], **style)
-            
-            for k, style in zip(range(3), self.fill_cycle()):
-                axes.axhspan(list_val_lim[k], list_val_lim[k+1], **style)
+        fig, axs = self.plotting_a_scale(axs, fig, new_df, False)
+
+        fig.suptitle(f"French data on\n{long_date}", size=16)
+        file_fct.save_fig (fig, 'France_Indic_Nat', self.plotting_dates[1])
         
-            axes.set_title(self.df_title.loc[para, 'Title'])
-            axes.set_ylabel(self.df_title.loc[para, 'Short_title'])
-            axes.set_xlabel('Date')
-            axes.grid()
-            axes.xaxis.set_major_formatter(dates.DateFormatter('%d/%m/%Y'))
-            axes.xaxis.set_major_locator(dates.DayLocator(interval=21))
+    def plot_indicateur_dpt (self):
+        long_date = self.plotting_dates[-1].strftime("%d %B, %Y")
+        short_date = self.plotting_dates[-1].strftime("%Y-%m-%d")
+        
+        list_fig = [self.preview()]
+        
+        for a_dpt in tqdm.tqdm(self.french_indic_dpt.index.get_level_values('departement').unique()):
+            fig, axs = plt.subplots(2,2, figsize=self.fig_size, num=f'Indicateurs français {short_date} {a_dpt}')
+            new_df = self.french_indic_dpt.loc[(slice(None), slice(self.plotting_dates[0],self.plotting_dates[-1])),:]
+            new_df = new_df.loc[a_dpt]
+            plot_av = True
+            
+            fig, axs = self.plotting_a_scale(axs, fig, new_df, plot_av)
+            
+            fig.suptitle(f"French data for {a_dpt}-{new_df.loc[:,'libelle_dep'].iloc[-1]} on\n{long_date}", size=16)
+            list_fig.append(fig)
+            
+        file_fct.save_multi_fig (list_fig, 'France_Indic_Dpt', self.plotting_dates[-1])  
+        
+    def plotting_a_scale(self, axs, fig, new_df, plot_av):
+        for axes, para in zip(numpy.ravel(axs), self.to_plot):
+            title_graph = self.df_title.loc[para, 'Title']
+            axes = self.plotting_an_indic (axes, para, new_df, title_graph, plot_av)
             
         fig.autofmt_xdate()
         handles, labels = self.legend(['Basse', 'Moyenne', 'Elevée'])
         fig.legend(handles, labels, loc="center right", borderaxespad=0.5, title='Criticité')
-        #plt.subplots_adjust(right=0.90)
-        fig.suptitle(f"French data on\n{long_date}", size=16)
-        
         fig.text(0.83, 0.05, 'Data source: Santé Publique France \nAnalysis: C.Houzard', fontsize=8)
         
-        file_fct.save_fig (fig, 'France_Indic_Nat', self.plotting_dates[1])
+        return fig, axs
+    
+    def plotting_an_indic (self, axes, para, new_df, title_graph, plot_av):
+        if numpy.isnan(new_df.loc[self.plotting_dates[0], para]):
+            new_df.loc[self.plotting_dates[0], para] = 0
+            
+        if max(new_df.loc[:,para]) < self.df_title.loc[para, 'Val_limite'][2]:
+            last_val_lim = 1.1*self.df_title.loc[para, 'Val_limite'][2]
+        else : 
+            last_val_lim = 1.1*max(new_df.loc[:,para])
+            
+        list_val_lim = [self.df_title.loc[para, 'Val_limite'][k] for k in range(3)]
+        list_val_lim.append(last_val_lim)
+        
+        for k, style in zip(range(2), self.style_cycle()):
+            if k == 0:
+                axes.plot(new_df.index, new_df.loc[:,para], label=self.df_title.loc[para, 'Title'], **style)
+            
+            elif plot_av: 
+                df_plot = self.french_indic_nat.loc[self.plotting_dates[0]:self.plotting_dates[-1]]
+                axes.plot(df_plot.index, df_plot.loc[:,para], label=self.df_title.loc[para, 'Title'], **style)
+        
+        for k, style in zip(range(3), self.fill_cycle()):
+            if plot_av:
+                global_max = max(max(new_df.loc[:,para]), max(df_plot.loc[:,para]))
+            else:
+                global_max = max(new_df.loc[:,para])
+                
+            if global_max < self.df_title.loc[para, 'Val_limite'][2]:
+                last_val_lim = 1.1*self.df_title.loc[para, 'Val_limite'][2]
+            else : 
+                last_val_lim = 1.1*global_max
+                    
+            list_val_lim = [self.df_title.loc[para, 'Val_limite'][k] for k in range(3)]
+            list_val_lim.append(last_val_lim)
+            axes.axhspan(list_val_lim[k], list_val_lim[k+1], **style)
+            
+        axes.set_title(title_graph)
+        axes.set_ylabel(self.df_title.loc[para, 'Short_title'])
+        axes.set_xlabel('Date')
+        axes.grid()
+        axes.xaxis.set_major_formatter(dates.DateFormatter('%Y-%m-%d'))
+        axes.xaxis.set_major_locator(dates.DayLocator(interval=self.intv))
+        return axes 
+            
+    
+    def preview (self):
+        long_date = self.plotting_dates[-1].strftime("%d %B, %Y")
+        short_date = self.plotting_dates[-1].strftime("%Y-%m-%d")
+        fig, axs = plt.subplots(3, 3, num=f'Preview {short_date}', figsize=(11.7, 8.3))
+        list_countries = self.french_indic_dpt.index.get_level_values('departement').unique() [:9]
+        
+        para = 'tx_incid'
+        
+        for axes, style, a_dpt in zip(numpy.ravel(axs), self.style_cycle(), list_countries):
+            new_df = self.french_indic_dpt.loc[(slice(None), slice(self.plotting_dates[0],self.plotting_dates[-1])),:]
+            new_df = new_df.loc[a_dpt]
+            
+            title = f"{a_dpt}-{new_df.loc[:,'libelle_dep'].iloc[-1]}"
+            
+            axes = self.plotting_an_indic (axes, para, new_df, title, False)
+            
+        fig.autofmt_xdate()
+        handles, labels = self.legend(['Basse', 'Moyenne', 'Elevée'])
+        fig.legend(handles, labels, loc="center right", borderaxespad=0.5, title='Criticité')
+        fig.suptitle(f"Taux d'incidence\n{long_date}", size=16)
+        
+        return fig
+    
 
     def legend(self, title):
         handles, labels = [], []
@@ -121,8 +192,9 @@ class PlotIndic:
             
         return handles, labels
     
-    def main_fct(self):
+    def main(self):
         self.plot_indicateur_nat()
+        self.plot_indicateur_dpt()
     
 
 class MapIndic:
@@ -207,7 +279,10 @@ class MapIndic:
                 
         text = hv.Curve((0, 0)).opts(xaxis=None, yaxis=None) * hv.Text(0, 0, 'Source: Santé Publique France\nGraph: C.Houzard')
         MapOutput = (geoviews.Layout(sum_map + text)).cols(1)
-        file_fct.save_fig (MapOutput, 'Map_France_Indic', self.date_final)
+        print('save')
+        renderer = hv.renderer('bokeh')
+        renderer.save(MapOutput, os.path.normcase(f'map'))
+        #file_fct.save_fig (MapOutput, 'Map_France_Indic', self.date_final)
         
     def creation_cmap (self, indicateur_dpt_plot, an_indic):
         len_cmap = 100
@@ -234,7 +309,7 @@ class MapIndic:
     
     def map_preview (self):
         indicateur_dpt = self.df_indic_dpt_prev.loc[[self.date_final]]
-        date = self.date_final.strftime(format='%d-%m-%Y')
+        date = self.date_final.strftime(format='%Y-%d-%m')
         print('Creating preview...')
         
         for an_indic in self.list_indicateur:
@@ -260,21 +335,32 @@ class MapIndic:
         self.map_preview()
 
     
-def plotting_indic (type_color, intv, fig_size):
+def plotting_indic_nat (type_color, intv, fig_size):
     style_cycle, fill_cycle = Cycler(type_color).main()
     plotting_dates = ['2020-03-19', 'last']
     df_title = pandas.DataFrame(index=['tx_incid', 'R', 'taux_occupation_sae', 'tx_pos'],
                             columns=['Title', 'Short_title','Val_limite'],
-                            data = [["Taux d'indicidence", "Activité épidémique (%)",(0, 10, 50)], ["Facteur de reproduction R0", '$R_0$',(0, 1, 1.5)], ['Taux d’occupation des lits en ICU', 'Tension hospitalière (%)',(0, 40, 60)], ['Taux de positivité des tests', 'Taux de positivité (%)',(0, 5, 10)]])
+                            data = [["Taux d'indicidence", "Activité épidémique (%)",(0, 10, 50)], ["Facteur de reproduction R0", '$R_0$',(0, 1, 1.5)], ['Taux d’occupation des lits en réa', 'Tension hospitalière (%)',(0, 40, 60)], ['Taux de positivité des tests', 'Taux de positivité (%)',(0, 5, 10)]])
     para_to_plot = ['tx_incid', 'R', 'taux_occupation_sae', 'tx_pos']
     
-    PlotIndic(intv, fig_size, plotting_dates, style_cycle, fill_cycle, para_to_plot, df_title).main_fct()
+    PlotIndic(intv, fig_size, plotting_dates, style_cycle, fill_cycle, para_to_plot, df_title).plot_indicateur_nat()
+    #PlotIndic(intv, fig_size, plotting_dates, style_cycle, fill_cycle, para_to_plot, df_title).plot_indicateur_dpt ()
+    
+def plotting_indic_dpt (type_color, intv, fig_size):
+    style_cycle, fill_cycle = Cycler(type_color).main()
+    plotting_dates = ['2020-06-01', 'last']
+    df_title = pandas.DataFrame(index=['tx_incid', 'R', 'taux_occupation_sae', 'tx_pos'],
+                            columns=['Title', 'Short_title','Val_limite'],
+                            data = [["Taux d'indicidence", "Activité épidémique (%)",(0, 10, 50)], ["Facteur de reproduction R0", '$R_0$',(0, 1, 1.5)], ['Taux d’occupation des lits en réa', 'Tension hospitalière (%)',(0, 40, 60)], ['Taux de positivité des tests', 'Taux de positivité (%)',(0, 5, 10)]])
+    para_to_plot = ['tx_incid', 'R', 'taux_occupation_sae', 'tx_pos']
+    
+    PlotIndic(intv, fig_size, plotting_dates, style_cycle, fill_cycle, para_to_plot, df_title).plot_indicateur_dpt ()
     
 def mapping_indic ():
     list_indicateur = ['tx_incid', 'R', 'taux_occupation_sae', 'tx_pos']
     df_title = pandas.DataFrame(index=['tx_incid', 'R', 'taux_occupation_sae', 'tx_pos'],
                             columns=['Title', 'Short_title','Val_limite'],
-                            data = [["Taux d'indicidence", "Activité épidémique (%)",(0, 10, 50)], ["Facteur de reproduction R0", '$R_0$',(0, 1, 1.5)], ['Taux d’occupation des lits en ICU', 'Tension hospitalière (%)',(0, 40, 60)], ['Taux de positivité des tests', 'Taux de positivité (%)',(0, 5, 10)]])
+                            data = [["Taux d'indicidence", "Activité épidémique (%)",(0, 10, 50)], ["Facteur de reproduction R0", '$R_0$',(0, 1, 1.5)], ['Taux d’occupation des lits en réa', 'Tension hospitalière (%)',(0, 40, 60)], ['Taux de positivité des tests', 'Taux de positivité (%)',(0, 5, 10)]])
     list_color = ['vert', 'orange', 'rouge']
     list_cmap = ['Greens', 'Purples', 'Reds']
     parameter = pandas.DataFrame(index=list_indicateur, columns=list_color, data=[[0, 10, 50], [0, 1, 1.5], [0, 40, 60], [0, 5, 10]])
@@ -287,5 +373,6 @@ def mapping_indic ():
     
 if __name__ == '__main__':
     fig_size = (14,7)
-    plotting_indic('color', 21, fig_size)
-    mapping_indic()
+    #plotting_indic_nat('color', 21, fig_size)
+    plotting_indic_dpt('color', 21, fig_size)
+    #mapping_indic()

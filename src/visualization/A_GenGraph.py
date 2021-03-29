@@ -182,7 +182,7 @@ class GeneralSituationGraph ():
         fig.autofmt_xdate()
             
         axs.set_title ('Fatality rate vs date')
-        axs.set_ylabel('Fatality rate')
+        axs.set_ylabel('Fatality rate (%)')
         axs.set_xlabel('Date')
         axs.grid()
         
@@ -195,7 +195,7 @@ class GeneralSituationGraph ():
             if self.prop_df.loc[country, f'Reg_{type_graph}']:
                 df_reg = self.result_reg.loc[country, f'df_{type_graph}']
                 for index in df_reg.index:
-                    axs.plot(df_reg.loc[index, 'list_date'], [df_reg.loc[index, 'growth_coeff'] for k in range(2)], '--', linewidth = 0.5, color=style['color'])
+                    axs.plot(df_reg.loc[index, 'list_date'], [df_reg.loc[index, 'growth_coeff'][0]*100 for k in range(2)], '--', linewidth = 0.5, color=style['color'])
 
         
         axs.xaxis.set_major_formatter(dates.DateFormatter('%y-%m-%d'))
@@ -260,7 +260,7 @@ class GeneralSituationGraph ():
         else:
             fig, axs = plt.subplots(2, 2, num=f'Covid-19 plot {layout} {self.list_countries[-1]} on {short_date}', figsize=self.fig_size) #Grid 2x2
             
-        fig.text(0.87, 0.05, 'Source: John Hopkins University\nGraph: C.Houzard', fontsize=8)
+        fig.text(0.83, 0.05, 'Source: John Hopkins University\nGraph: C.Houzard', fontsize=8)
         
         if layout == 'delta':
             self.layout_delta (fig, axs)
@@ -370,7 +370,7 @@ class StackGraph ():
         long_date = self.plotting_dates[-1].strftime("%d %B, %Y")
         
         fig, axs = plt.subplots(1, 2, num=f'Covid-19 plot on {long_date}\nStacked plot', figsize=self.fig_size) #Grid 2x2
-        fig.text(0.87, 0.05, 'Source: John Hopkins University \nGraph: C.Houzard', fontsize=8)
+        fig.text(0.83, 0.05, 'Source: John Hopkins University \nGraph: C.Houzard', fontsize=8)
         
         for type_graph, label_xy, axes in zip(['cases', 'death'], [50000, 500], numpy.ravel(axs)):
             self.graph_stack (type_graph, label_xy, fig, axes)
