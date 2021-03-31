@@ -9,9 +9,11 @@ Welcome to COVID-DAP's documentation!
 .. toctree::
    :maxdepth: 4
    :caption: Contents:
-   
+
    how_to
    modules
+
+This documentation shows how the COVID-Data Analysis Project projects works. The project analyzes data from various sources and offers various representations.
 
 
 Indices and tables

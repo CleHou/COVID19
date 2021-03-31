@@ -193,3 +193,6 @@ data/processed/covid_data/fra/fra_indic_nat.json
 data/list_files_date.json
 data/list_files_date.json
 update.bash
+map.html
+data/processed/covid_data/fra/fra_indic_dpt_graph.json
+data/processed/covid_data/fra/fra_indic_dpt_graph.json
