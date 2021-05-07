@@ -86,52 +86,99 @@ class WorldDataSet:
 
 class FrenchDataSets:
     def __init__ (self):
-        self.df_fra, self.df_fra_backup = df_fct.import_df(['Fra_GenData', 'Fra_Backup'],['raw', 'raw'])
+        self.df_fra, self.df_fra_2, self.df_fra_backup = df_fct.import_df(['Fra_GenData', 'Fra_GenData2', 'Fra_Backup'],['raw', 'raw', 'raw'])
         self.df_dpt_shp = df_fct.import_df(['Fra_Departements_shapefile'],['raw'])[0]
         self.df_fra_nat = pandas.DataFrame()
         self.df_fra_reg = pandas.DataFrame()
         self.df_fra_dpt = pandas.DataFrame()
         
     def clean_up_nat (self):
+        """
+        This fct creates a df with french data on cases & death (+ calculated value)
+        The source can be of 3 kind (order of priority):
+            1- Open-covid-fr (self.df_fra)
+                1.1 - opendcovid19-fr gives death
+                1.2 - ministere-sante gives death and cases 
+            2- Data gouv (self.df_fra_2): gives cases and death
+            3- Backup data created by hand: gives cases
+        
+        STRONG HYP: death are always up to date
+
+        Date min: from Open-covid-fr (self.df_fra)
+        Date max: 
+            1- Find which source (excuding backup) has the latest date, set it as based date
+                1.1 - If source with latest date == minister-sante : self.df_fra_nat defined from minister-sante
+                1.2 - If source with latest date == opencovid-19 : self.df_fra_nat defined from opencovid-19
+                    1.2.1 - Check if backup has the matching number of cases
+                1.3 - If source with latest date == data-gouv : 
+                    1.3.1 - self.df_fra_nat defined from opencovid-19
+                    1.3.2 - Match cases data with data-gouv
+        """
         self.df_fra_backup = self.df_fra_backup.set_index('date')
         self.df_fra_backup.loc[:,'cases'] = pandas.to_numeric(self.df_fra_backup.loc[:,'cases'], downcast='float')
         self.df_fra_backup.index = pandas.to_datetime(self.df_fra_backup.index)
         
         self.df_fra = self.df_fra.set_index('date')
-        self.df_fra = self.df_fra.drop(index=['2020-11_11']).reset_index()
+        self.df_fra = self.df_fra.drop(index=['2020-11_11'])
+        self.df_fra.index = pandas.to_datetime(self.df_fra.index, format='%Y-%m-%d')
         
-        df_sort_1 = self.df_fra[(self.df_fra.loc[:,'granularite']=='pays') & (self.df_fra.loc[:,'source_type']=='opencovid19-fr')]
-        df_sort_2 = self.df_fra[(self.df_fra.loc[:,'granularite']=='pays') & (self.df_fra.loc[:,'source_type']=='ministere-sante')]
+        self.df_fra_2 = self.df_fra_2.set_index('date')
+        self.df_fra_2.index = pandas.to_datetime(self.df_fra_2.index, format='%Y-%m-%d')
+        self.df_fra_2 = self.df_fra_2[['conf']].dropna()
         
-        if df_sort_1.index[-1] <= df_sort_2.index[-1]:
-            self.df_fra_nat = df_sort_2.set_index('date')
-            self.df_fra_nat.index = pandas.to_datetime(self.df_fra_nat.index, format='%Y-%m-%d')
-            self.df_fra_nat = self.df_fra_nat.sort_index()
+        df_sort_1 = self.df_fra[(self.df_fra.loc[:,'granularite']=='pays') & (self.df_fra.loc[:,'source_type']=='opencovid19-fr')] #Gives us the last date where data available
+        df_sort_2 = self.df_fra[(self.df_fra.loc[:,'granularite']=='pays') & (self.df_fra.loc[:,'source_type']=='ministere-sante')] #Original source for cases
+
+        last_dates = numpy.array([self.df_fra_2.index[-1], df_sort_1.index[-1], df_sort_2.index[-1]])
+        source_max = numpy.argmax(last_dates)
+
+        if source_max == 2:
+            #self.df_fra_nat = df_sort_2.set_index('date')
+            #self.df_fra_nat.index = pandas.to_datetime(self.df_fra_nat.index, format='%Y-%m-%d')
+            self.df_fra_nat = df_sort_2.sort_index()
             self.df_fra_nat['deces_ehpad'] = self.df_fra_nat['deces_ehpad'].fillna(method='ffill').fillna(0)
             self.df_fra_nat.loc[:,'deces'] = self.df_fra_nat.loc[:,'deces'] + self.df_fra_nat.loc[:,'deces_ehpad']
             self.df_fra_nat = self.df_fra_nat.loc[:, ['cas_confirmes', 'deces', 'reanimation', 'hospitalises']]
             self.df_fra_nat = self.df_fra_nat.rename(columns={'cas_confirmes':'cases', 'deces':'death'})
             self.update_backup()
-            
+
         else:
-            self.df_fra_nat = df_sort_1.set_index('date')
-            self.df_fra_nat.index = pandas.to_datetime(self.df_fra_nat.index, format='%Y-%m-%d')
-            self.df_fra_nat = self.df_fra_nat.sort_index()
+            #self.df_fra_nat = df_sort_1.set_index('date')
+            #self.df_fra_nat.index = pandas.to_datetime(self.df_fra_nat.index, format='%Y-%m-%d')
+            self.df_fra_nat = df_sort_1.sort_index()
+            print(self.df_fra_nat)
             self.df_fra_nat = self.df_fra_nat.loc[:, ['cas_confirmes', 'deces', 'reanimation', 'hospitalises']]
             self.df_fra_nat = self.df_fra_nat.rename(columns={'cas_confirmes':'cases', 'deces':'death'})
             
-            if self.df_fra_backup.index[-1] < self.df_fra_nat.index[-1]:
-                raise ValueError(f'Source data and backup data for France ({self.df_fra_backup.index[-1].strftime("%d-%m-%Y")}) not available')
-            
+            if source_max == 0: #Max from df_fra_nat
+                print(self.df_fra_nat.index[0], self.df_fra_2.index[0])
+                if self.df_fra_nat.index[0] < self.df_fra_2.index[0]: #Min from df_fra_nat
+                    self.df_fra_nat_complete = df_sort_2.sort_index()
+                    print(self.df_fra_nat_complete['cas_confirmes'])
+                    
+                    self.df_fra_nat.loc[self.df_fra_nat.index[0]:self.df_fra_2.index[0],['cases']] = self.df_fra_nat_complete.loc[self.df_fra_nat.index[0]:self.df_fra_2.index[0],['cas_confirmes']].values
+                    self.df_fra_nat.loc[self.df_fra_2.index[0]:self.df_fra_nat.index[-1],['cases']] = self.df_fra_2.loc[self.df_fra_2.index[0]:self.df_fra_nat.index[-1],['conf']].values
+                   
+                else: #Min from df_fra_2
+                    self.df_fra_nat.loc[self.df_fra_nat.index[0]:self.df_fra_nat.index[-1],['cases']] = self.df_fra_2.loc[self.df_fra_nat.index[0]:self.df_fra_nat.index[-1],['conf']].values
+                
+                self.update_backup()  
+
             else:
-                print('Using backup data')
-                self.df_fra_nat.loc[self.df_fra_nat.index[0]:self.df_fra_nat.index[-1], ['cases']] = self.df_fra_backup.loc[self.df_fra_nat.index[0]:self.df_fra_nat.index[-1], ['cases']].values
-        
+                if self.df_fra_backup.index[-1] < self.df_fra_nat.index[-1]:
+                    raise ValueError(f'Source data and backup data for France ({self.df_fra_backup.index[-1].strftime("%d-%m-%Y")}) not available')
+                
+                else:
+                    print('Using backup data')
+                    self.df_fra_nat.loc[self.df_fra_nat.index[0]:self.df_fra_nat.index[-1], ['cases']] = self.df_fra_backup.loc[self.df_fra_nat.index[0]:self.df_fra_nat.index[-1], ['cases']].values
+                    
         for type_data in ['cases', 'death']:
             self.df_fra_nat.loc[:,f'delta_{type_data}'] = self.df_fra_nat.loc[:,type_data].diff()
             self.df_fra_nat.loc[:,f'growth_{type_data}'] = self.df_fra_nat.loc[:,type_data].pct_change()
             self.df_fra_nat.loc[:,f'weekly_growth_{type_data}'] = self.df_fra_nat.loc[:,type_data].pct_change(periods=7)
-    
+        
+        self.df_fra = self.df_fra.reset_index()
+        
     def update_backup(self):
         day_after = self.df_fra_backup.index[-1] + pandas.Timedelta(1, unit='d')
         self.df_fra_backup = pandas.concat([self.df_fra_backup.loc[:,['cases']], self.df_fra_nat.loc[day_after:,['cases']]]) 
@@ -520,9 +567,9 @@ class FrenchMapDataSet ():
         
 
 if __name__ == '__main__':
-    #FrenchDataSets().main()
+    FrenchDataSets().main()
     #df_fra_dpt_shpe= FrenchIndic().main()
-    df_vax = FrenchVax ().main()
+    #df_vax = FrenchVax ().main()
     """
     df_world = WorldDataSet().main(7, False)
     df_us = USMapDataSet().main()

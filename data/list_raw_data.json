@@ -171,6 +171,23 @@
             "id_vars":null
         },
         {
+            "index":"Fra_GenData2",
+            "link":"https:\/\/www.data.gouv.fr\/fr\/datasets\/r\/f335f9ea-86e3-4ffa-9684-93c009d5e617",
+            "type":"Pandas",
+            "update":true,
+            "last_update":null,
+            "file_name":"fra_gendata2.csv",
+            "sub_dir":"\/covid_data\/fra",
+            "encoding":"utf-8",
+            "sep":",",
+            "index_name":"date",
+            "date_format":"%Y-%m-%d",
+            "drop_col":null,
+            "drop_val":null,
+            "time_delta":0.0,
+            "id_vars":null
+        },
+        {
             "index":"Fra_Backup",
             "link":"https:\/\/raw.githubusercontent.com\/CleHou\/COVID-19-Data-Analysis-Project\/master\/data\/raw\/covid_data\/fra\/fra_backup.csv",
             "type":"Pandas",

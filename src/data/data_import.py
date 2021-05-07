@@ -128,8 +128,6 @@ def force_download(data_dir, db_list, last_update, update_limit):
             
         
     print('\n\n')
-    
-
 
 def main(update_limit):
     
